@@ -1,0 +1,48 @@
+
+
+{{pedidos.length}}
+<table style="width:100%">
+    <tr>
+      <th>Codigo Pedido</th>
+      <th>Codigo Cliente</th>
+      <th>Fecha Pedido</th>
+      <th>Prioridad</th>
+    </tr>
+
+    
+    <tr *ngIf = "modoActualizar" >
+        <td><input type="number" [value] = "pedidoAActualizar.codPedido" disabled ></td>
+        <td><input type="number" [(ngModel)] = "pedidoAActualizar.codCliente" name = "codCliente" ></td>
+        <td><input type="text" [(ngModel)] = "pedidoAActualizar.fechaPedido" name = "fechaPedido"></td>
+        <td><input type="text"  [(ngModel)] = "pedidoAActualizar.prioridad" name = "prioridad"></td>
+        <td><button (click) = "guardarPedido()" >Guardar</button></td>
+    </tr>
+
+
+    <tr *ngFor = "let pedido of pedidos">
+        <td>{{pedido.codPedido}}</td>
+        <td>{{pedido.codCliente}}</td>
+        <td>{{pedido.fechaPedido}}</td>
+        <td>{{pedido.prioridad}}</td>
+        <td> <button (click) = mostrarPedidoAActualizar(pedido) > Actualizar</button></td>
+    </tr>
+
+
+    <tr *ngIf = "!modoActualizar" >
+        <td><input type="text" disabled></td>
+        <td><input type="number" [(ngModel)] = "pedidoNuevo.codCliente" name = "codCliente" ></td>
+        <td><input type="text" [(ngModel)] = "pedidoNuevo.fechaPedido" name = "fechaPedido"></td>
+        <td><input type="text"  [(ngModel)] = "pedidoNuevo.prioridad" name = "prioridad"></td>
+        <td><button (click) = "agregarPedido()" >Agregar</button></td>
+    </tr>
+
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        
+    </tr>
+</table>
+
