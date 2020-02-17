@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdmPedidoComponent } from './components/adm-pedido/adm-pedido.component';
 import { FormsModule }   from '@angular/forms';
+import { ViewPedidoComponent } from './components/view-pedido/view-pedido.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdmPedidoComponent
+    AdmPedidoComponent,
+    ViewPedidoComponent
   ],
   imports: [
     BrowserModule,
