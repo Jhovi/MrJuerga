@@ -7,6 +7,15 @@ import { AppComponent } from './app.component';
 import { AdmPedidoComponent } from './components/adm-pedido/adm-pedido.component';
 import { FormsModule }   from '@angular/forms';
 import { ViewPedidoComponent } from './components/view-pedido/view-pedido.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatTableModule, } from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+
+
 
 @NgModule({
   declarations: [
@@ -18,7 +27,13 @@ import { ViewPedidoComponent } from './components/view-pedido/view-pedido.compon
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatTableModule, 
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule
     
   ],
   providers: [],

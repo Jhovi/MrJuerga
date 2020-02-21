@@ -1,6 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { Pedido } from 'src/app/models/pedido';
+import { Router } from '@angular/router';
+
+
+
+export interface TableElement {
+  codPedido: number;
+  codCliente: number;
+  fechaPedido: string;
+  prioridad: string;
+}
+
+
+
+
+
 
 @Component({
   selector: 'app-adm-pedido',
@@ -15,7 +30,13 @@ export class AdmPedidoComponent implements OnInit {
 
   pedidoNuevo: Pedido = new Pedido()
   pedidoAActualizar: Pedido
-  constructor(private pedidoService:PedidoService) {
+
+
+  displayedColumns: string[] = ['codPedido', 'codCliente', 'fechaPedido', 'prioridad', 'acciones'];
+  dataSource : TableElement[]
+
+
+  constructor(private pedidoService:PedidoService, private router: Router) {
 
     
    }
@@ -27,6 +48,20 @@ export class AdmPedidoComponent implements OnInit {
     this.pedidoService.findAll().subscribe(
       pedidosObtenidos => {
        this.pedidos = pedidosObtenidos
+        //Construir dataSource
+        this.dataSource = [];
+
+      this.pedidos.forEach(e => 
+        this.dataSource.push({
+          codPedido: e.codPedido,
+          codCliente: e.codCliente,
+          fechaPedido: e.fechaPedido,
+          prioridad: e.prioridad
+        })
+        );
+        
+
+
       },
       err => console.error(err)
     )
@@ -64,5 +99,11 @@ export class AdmPedidoComponent implements OnInit {
     },
     err => console.error(err)
   )
+  }
+
+  verDetalle(id : number){
+
+    this.router.navigate(['/'+ id])
+
   }
 }
