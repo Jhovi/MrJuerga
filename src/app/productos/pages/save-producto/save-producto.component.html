@@ -1,0 +1,53 @@
+<mat-toolbar class="option-toolbar">
+    <mat-toolbar-row class="path-mat-toolbar-row">
+        <h3 class="path-h3">Registrar Producto</h3>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="actions-mat-toolbar-row">
+        <button mat-stroked-button color="primary" [disabled]="!saveForm.form.valid" form="saveForm"
+            *ngIf="role!=='view'"> Guardar</button>
+        <button mat-stroked-button color="primary" *ngIf="role==='view'" routerLink='update'> Editar</button>
+        <button mat-stroked-button color="warn" class="btn-salir" [routerLink]="salirLink"> Atras</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-card class="save-producto-card">
+    <mat-card-content>
+        <form id="saveForm" (ngSubmit)="saveProducto(saveForm)" #saveForm="ngForm">
+
+
+            <mat-form-field class="input-field-producto" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" [(ngModel)]="producto.nombre" name="nombre" required
+                    [disabled]="role =='view'">
+            </mat-form-field>
+
+            <mat-form-field class="input-field-producto" appearance="outline">
+                <mat-label>Categoria</mat-label>
+                <input matInput type="text" [(ngModel)]="producto.categoria" name="categoria" required
+                    [disabled]="role =='view'">
+            </mat-form-field>
+
+            <mat-form-field class="input-field-producto" appearance="outline">
+                <mat-label>Precio</mat-label>
+                <input matInput type="number" [(ngModel)]="producto.precio" name="precio" required
+                    [disabled]="role =='view'">
+            </mat-form-field>
+
+            <mat-form-field class="input-field-producto" appearance="outline">
+                <mat-label>Stock</mat-label>
+                <input matInput type="number" [(ngModel)]="producto.stock" name="stock" required
+                    [disabled]="role =='view'">
+            </mat-form-field>
+
+
+
+            <mat-form-field class="input-field-producto" appearance="outline">
+                <mat-label>Descripcion</mat-label>
+                <textarea matInput type="text" [(ngModel)]="producto.descripcion" name="descripcion" required
+                    [disabled]="role =='view'"></textarea>
+            </mat-form-field>
+
+        </form>
+    </mat-card-content>
+</mat-card>

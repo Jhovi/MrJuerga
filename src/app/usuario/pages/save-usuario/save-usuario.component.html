@@ -1,0 +1,80 @@
+<mat-toolbar class="option-toolbar">
+    <mat-toolbar-row class="path-mat-toolbar-row">
+        <h3 class="path-h3">Registrar Usuario</h3>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="actions-mat-toolbar-row">
+        <button mat-stroked-button color="primary" [disabled]="!(saveForm.form.valid && passwordIguales)" form="saveForm"
+            *ngIf="role!=='view'"> Guardar</button>
+        <button mat-stroked-button color="primary" *ngIf="role==='view'" routerLink='update'> Editar</button>
+        <button mat-stroked-button color="warn" class="btn-salir" [routerLink]="salirLink"> Atras</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-card class="save-usuario-card">
+    <mat-card-content>
+        <form id="saveForm" (ngSubmit)="saveUsuario(saveForm)" #saveForm="ngForm">
+
+
+            <mat-form-field class="input-field-usuario" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" [(ngModel)]="usuario.nombre" name="nombre" required
+                    [disabled]="role =='view'">
+            </mat-form-field>
+
+            <mat-form-field class="input-field-usuario" appearance="outline">
+                <mat-label>Apellido</mat-label>
+                <input matInput type="text" [(ngModel)]="usuario.apellido" name="apellido" required
+                    [disabled]="role =='view'">
+            </mat-form-field>
+
+            <mat-form-field class="input-field-usuario" appearance="outline">
+                <mat-label>Correo</mat-label>
+                <input matInput type="text" [(ngModel)]="usuario.correo" name="correo" required
+                    [disabled]="role =='view'">
+            </mat-form-field>
+
+            <mat-form-field class="input-field-usuario" appearance="outline">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento"
+                    [(ngModel)]="usuario.fechaNacimiento" name="fechaNacimiento" required [disabled]="role =='view'">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="input-field-usuario" appearance="outline">
+                <mat-label>Telefono</mat-label>
+                <input matInput type="number" [(ngModel)]="usuario.telefono" name="telefono" required
+                    [disabled]="role =='view'">
+            </mat-form-field>
+
+            <mat-form-field class="input-field-usuario" appearance="outline">
+                <mat-label>DNI</mat-label>
+                <input matInput type="number" [(ngModel)]="usuario.dni" name="dni" required [disabled]="role =='view'">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="input-field-usuario">
+                <mat-label> Contraseña </mat-label>
+                <input matInput [type]="passwordHidden ? 'password' : 'text'" #new [minlength]="minLength"
+                    [(ngModel)]="password" name="password" (keyup)="verificarPasswordIguales()" required>
+                <mat-hint align="end">{{new.value.length}} / {{minLength}}</mat-hint>
+                <button mat-icon-button matSuffix (click)="passwordHidden = !passwordHidden">
+                    <mat-icon>{{passwordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="input-field-usuario">
+                <mat-label>Confirmar Contraseña </mat-label>
+                <input matInput [type]="confirmPasswordHidden ? 'password' : 'text'" #confirm [minlength]="minLength"
+                    [(ngModel)]="confirmPassword" name="confirmPassword" (keyup)="verificarPasswordIguales()" required>
+                <mat-hint align="end">{{confirm.value.length}} / {{minLength}}</mat-hint>
+                <mat-hint align="start" *ngIf="!passwordIguales" class="validate-password">La contraseña no coincide
+                </mat-hint>
+                <button mat-icon-button matSuffix (click)="confirmPasswordHidden = !confirmPasswordHidden">
+                    <mat-icon>{{confirmPasswordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,72 @@
+.input-field-producto {
+    margin-top: 1rem;
+    width: 48%;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
+  }
+ 
+  .button-card{
+      text-align: right;
+  }
+  
+  .tipo-doc-radio-button{
+      margin-top: 2px;
+      margin-bottom: 4px;
+      
+  }
+  .mat-radio-button ~ .mat-radio-button {
+      margin-left: 32px;
+    }
+  
+    
+  .option-toolbar {
+      position: sticky;
+      max-width: 1300px;    
+      margin:  auto;
+      top:0;
+      margin-bottom: 6px;
+      z-index: 1; /* TODO */
+  }
+  
+  .path-mat-toolbar-row {
+      height: 36px;
+    }
+    
+    .actions-mat-toolbar-row{
+      height: 48px;
+    }
+    
+    .path-h3{
+      color: rgba(0, 0, 0, 0.74);
+    }
+  
+    .save-producto-card{
+        margin: 1rem;
+        width: 97%;
+        max-width: 1300px;
+        margin: auto;
+        padding: 0;
+    }
+  
+  
+ 
+  
+  .btn-agregar{
+    margin-left: 5%;
+  }
+  
+  .btn-salir{
+    margin-left:0.5rem;
+  }
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+

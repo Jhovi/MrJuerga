@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewPedidoComponent } from './view-pedido.component';
+import { SaveUsuarioComponent } from './save-usuario.component';
 
-describe('ViewPedidoComponent', () => {
-  let component: ViewPedidoComponent;
-  let fixture: ComponentFixture<ViewPedidoComponent>;
+describe('SaveUsuarioComponent', () => {
+  let component: SaveUsuarioComponent;
+  let fixture: ComponentFixture<SaveUsuarioComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewPedidoComponent ]
+      declarations: [ SaveUsuarioComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewPedidoComponent);
+    fixture = TestBed.createComponent(SaveUsuarioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

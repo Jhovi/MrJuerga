@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "joker-web"
+  "defaultProject": "joker-web",
+  "cli": {
+    "analytics": false
+  }
 }

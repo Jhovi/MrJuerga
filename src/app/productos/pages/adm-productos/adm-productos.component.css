@@ -1,0 +1,38 @@
+/*toolbar*/
+
+.option-toolbar {
+  position: sticky;
+  max-width: 1300px;
+  margin: auto;
+  top: 0;
+  margin-bottom: 6px;
+  z-index: 1; /* TODO */
+}
+
+.path-mat-toolbar-row {
+  height: 36px;
+}
+
+.actions-mat-toolbar-row {
+  height: 48px;
+}
+
+.path-h3 {
+  color: rgba(0, 0, 0, 0.74);
+}
+
+.lista-productos-card {
+  max-width: 1300px;
+  margin: auto;
+  padding: 0;
+}
+
+.table-productos {
+  width: 100%;
+  min-width: 1000px;
+}
+
+.card-productos {
+  margin-top: 1rem;
+  width: 97%;
+}

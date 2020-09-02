@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ViewPedidoComponent } from './components/view-pedido/view-pedido.component';
-import { AdmPedidoComponent } from './components/adm-pedido/adm-pedido.component';
+import { BaseLayoutComponent } from './shared/pages/base-layout/base-layout.component';
 
 
 const routes: Routes = [
-
-  
-  { path: '', component: AdmPedidoComponent },
-  { path: ':codPedido', component: ViewPedidoComponent }
-
+  {
+    path: '',
+    component: BaseLayoutComponent,
+    children: [
+      { path: 'productos', loadChildren: () => import('./productos/productos.module').then(m => m.ProductosModule) },
+      { path: 'usuarios', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },
+    ]
+  },
 
 ];
 
