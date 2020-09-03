@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UsuarioRoutingModule } from './usuario-routing.module';
-import { AdmUsuariosComponent } from './pages/adm-usuarios/adm-usuarios.component';
+import { BoletaRoutingModule } from './boleta-routing.module';
+import { AdmBoletaComponent } from './pages/adm-boleta/adm-boleta.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,16 +12,18 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { SaveUsuarioComponent } from './pages/save-usuario/save-usuario.component';
+import { SaveBoletaComponent } from './pages/save-boleta/save-boleta.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import { SearchUsuarioComponent } from './components/search-usuario/search-usuario.component';
+import {ReactiveFormsModule} from  '@angular/forms'
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
-  declarations: [AdmUsuariosComponent, SaveUsuarioComponent, SearchUsuarioComponent],
+  declarations: [AdmBoletaComponent, SaveBoletaComponent],
   imports: [
     CommonModule,
-    UsuarioRoutingModule,
+    BoletaRoutingModule,
     MatTableModule,
     MatCardModule,
     MatIconModule,
@@ -31,9 +33,11 @@ import { SearchUsuarioComponent } from './components/search-usuario/search-usuar
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
-  ],
-  entryComponents: [ SearchUsuarioComponent],
+    ReactiveFormsModule,
+    MatSelectModule,
+  ]
 })
-export class UsuarioModule { }
+export class BoletaModule { }

@@ -3,8 +3,8 @@
         <h3 class="path-h3">Registrar Usuario</h3>
     </mat-toolbar-row>
     <mat-toolbar-row class="actions-mat-toolbar-row">
-        <button mat-stroked-button color="primary" [disabled]="!(saveForm.form.valid && passwordIguales)" form="saveForm"
-            *ngIf="role!=='view'"> Guardar</button>
+        <button mat-stroked-button color="primary" [disabled]="!(saveForm.form.valid && passwordIguales)"
+            form="saveForm" *ngIf="role!=='view'"> Guardar</button>
         <button mat-stroked-button color="primary" *ngIf="role==='view'" routerLink='update'> Editar</button>
         <button mat-stroked-button color="warn" class="btn-salir" [routerLink]="salirLink"> Atras</button>
     </mat-toolbar-row>
@@ -58,7 +58,7 @@
                 <input matInput [type]="passwordHidden ? 'password' : 'text'" #new [minlength]="minLength"
                     [(ngModel)]="password" name="password" (keyup)="verificarPasswordIguales()" required>
                 <mat-hint align="end">{{new.value.length}} / {{minLength}}</mat-hint>
-                <button mat-icon-button matSuffix (click)="passwordHidden = !passwordHidden">
+                <button mat-icon-button type="button" matSuffix (click)="passwordHidden = !passwordHidden">
                     <mat-icon>{{passwordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
@@ -70,7 +70,8 @@
                 <mat-hint align="end">{{confirm.value.length}} / {{minLength}}</mat-hint>
                 <mat-hint align="start" *ngIf="!passwordIguales" class="validate-password">La contraseña no coincide
                 </mat-hint>
-                <button mat-icon-button matSuffix (click)="confirmPasswordHidden = !confirmPasswordHidden">
+                <button mat-icon-button type="button" matSuffix
+                    (click)="confirmPasswordHidden = !confirmPasswordHidden">
                     <mat-icon>{{confirmPasswordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>

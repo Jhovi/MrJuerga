@@ -29,6 +29,12 @@ export class OpcionService {
         { name: 'Usuarios', path: '/usuarios/adm', offLine: false },
       ]
     },
+    {
+      name: 'Boletas',
+      options: [
+        { name: 'Boletas', path: '/boletas/adm', offLine: false },
+      ]
+    },
   ]
   constructor() { }
 

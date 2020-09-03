@@ -46,7 +46,7 @@ export class AdmUsuariosComponent implements OnInit {
   eliminar(usuario:Usuario){
     console.log(usuario);
     this.usuarioService.delete(usuario).subscribe( () => {
-      this._snackBar.open('Actualizacion con éxito', '', { duration: 2000 });
+      this._snackBar.open('Eliminacion con éxito', '', { duration: 2000 });
       this.getUsuarios();
     },
       err => {

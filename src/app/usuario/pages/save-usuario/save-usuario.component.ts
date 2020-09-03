@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./save-usuario.component.css']
 })
 export class SaveUsuarioComponent implements OnInit {
-  fechaNacimiento:Date;
+  fechaNacimiento: Date;
   salirLink = '';
   role = '';
   usuario = new Usuario();
@@ -18,14 +18,14 @@ export class SaveUsuarioComponent implements OnInit {
   password: string = '';
   confirmPassword: string;
   passwordIguales: boolean;
-  minLength : number;
+  minLength: number;
   currentPasswordHidden: boolean;
   passwordHidden: boolean;
   confirmPasswordHidden: boolean;
 
-  
 
-  constructor(private usuarioService:UsuarioService,
+
+  constructor(private usuarioService: UsuarioService,
     private _snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router,) { }
 
   ngOnInit(): void {
@@ -47,36 +47,38 @@ export class SaveUsuarioComponent implements OnInit {
     }
   }
 
-  getUsuario(){
+  getUsuario() {
     const id = +(this.route.snapshot.paramMap.get('id'));
-  //   this.usuarioService.findById(id).subscribe(usuario => {
-  //     this.usuario = usuario;
-  // })
-}
+    this.usuarioService.findById(id).subscribe(usuario => {
+      this.usuario = usuario;
+      this.password = this.usuario.password;
+      this.confirmPassword = this.usuario.password;
+    })
+  }
 
-  
 
-  saveUsuario({ value, valid }: { value: Usuario, valid: boolean }){
+
+  saveUsuario({ value, valid }: { value: Usuario, valid: boolean }) {
     let link = '../';
     let url = '../';
-    if (valid){ 
-      if (this.usuario.id){
+    if (valid) {
+      if (this.usuario.id) {
         this.usuarioService.edit(this.usuario).subscribe(id => {
           this._snackBar.open('Actualizacion con éxito', '', { duration: 2000 });
           this.router.navigate([link + url + 'adm'], { relativeTo: this.route });
         },
           err => {
             this._snackBar.open(err, '', { duration: 2000 });
-        })
-      }else {
+          })
+      } else {
         this.usuario.password = this.password;
         this.usuario.estado = 'Activo';
         this.usuarioService.create(this.usuario).subscribe(id => {
           this._snackBar.open('Creación con éxito', '', { duration: 2000 });
           this.router.navigate([link + 'adm'], { relativeTo: this.route });
-        },  err => {
+        }, err => {
           this._snackBar.open(err, '', { duration: 2000 });
-  
+
         })
       }
 
@@ -85,7 +87,7 @@ export class SaveUsuarioComponent implements OnInit {
 
 
   verificarPasswordIguales(): void {
-    if (this.password.length >  0|| this.confirmPassword.length > 0) {
+    if (this.password.length > 0 || this.confirmPassword.length > 0) {
       if (this.password != this.confirmPassword) {
         this.passwordIguales = false;
       } else {

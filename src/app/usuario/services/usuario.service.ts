@@ -32,4 +32,9 @@ export class UsuarioService {
     const url = this.apiUrl  + "/" + usuario.id;
     return this.http.put<boolean>(url,usuario);
   }
+
+  findById(id:number):Observable<Usuario>{
+    const url = this.apiUrl  + "/" + id;
+    return this.http.get<Usuario>(url);
+  }
 }
