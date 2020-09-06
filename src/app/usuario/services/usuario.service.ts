@@ -37,4 +37,9 @@ export class UsuarioService {
     const url = this.apiUrl  + "/" + id;
     return this.http.get<Usuario>(url);
   }
+
+  findByNombreContaining(nombre:string):Observable<Usuario[]>{
+    const url = this.apiUrl + "/fetchbyname/"  + nombre;
+    return this.http.get<Usuario[]>(url);
+  }
 }

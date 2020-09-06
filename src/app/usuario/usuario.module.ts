@@ -16,6 +16,7 @@ import { SaveUsuarioComponent } from './pages/save-usuario/save-usuario.componen
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { SearchUsuarioComponent } from './components/search-usuario/search-usuario.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [AdmUsuariosComponent, SaveUsuarioComponent, SearchUsuarioComponent],
@@ -33,6 +34,7 @@ import { SearchUsuarioComponent } from './components/search-usuario/search-usuar
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
   ],
   entryComponents: [ SearchUsuarioComponent],
 })

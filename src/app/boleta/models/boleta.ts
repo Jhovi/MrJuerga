@@ -19,5 +19,11 @@ export class DetalleBoleta {
     producto:Producto;
     boletaId:number;
     cantidad:number;
-    subtotal:number;    
+    subtotal:number;   
+    
+    constructor(cantidad?:number, productoId?:number) {
+       this.cantidad = cantidad;
+       this.productoId = productoId;        
+    }
 }
+

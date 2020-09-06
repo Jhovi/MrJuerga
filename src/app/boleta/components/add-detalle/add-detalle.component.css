@@ -1,0 +1,30 @@
+/* Contenido */
+.select-mat-form-field {
+    margin-right: 1%;
+    width: 24%;
+  }
+  .search-mat-form-field {
+    margin-right: 1%;
+    width: 74%;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .select-mat-form-field, .search-mat-form-field{
+      width: 100%;
+    }
+  }
+  
+  /* Contenido - Table */
+  .mat-table {
+    width: 100%;
+    min-width: 480px;
+  }
+  
+  .table-container{
+    overflow-x: scroll;
+  }
+  
+  tr.element-row:hover {
+    background: #777;
+  }
+  

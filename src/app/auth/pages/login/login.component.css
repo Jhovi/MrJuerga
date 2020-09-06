@@ -1,0 +1,17 @@
+.full-width {
+    width: 100%;
+  }
+  
+  .container {
+    max-width: 300px;
+    min-width: 100px;
+    width: 100%;
+    margin:0 auto;
+    margin-top: 10%;
+  }
+  .logo-mat-card-image{
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+  

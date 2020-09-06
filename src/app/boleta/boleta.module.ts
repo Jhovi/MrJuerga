@@ -18,9 +18,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {ReactiveFormsModule} from  '@angular/forms'
 import {MatSelectModule} from '@angular/material/select';
+import { AddDetalleComponent } from './components/add-detalle/add-detalle.component';
 
 @NgModule({
-  declarations: [AdmBoletaComponent, SaveBoletaComponent],
+  declarations: [AdmBoletaComponent, SaveBoletaComponent, AddDetalleComponent],
   imports: [
     CommonModule,
     BoletaRoutingModule,

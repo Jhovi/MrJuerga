@@ -1,13 +1,21 @@
 <h3>Busqueda de Usuarios</h3>
-<!-- 
+
 <form (ngSubmit)="onSearch()" #searchForm="ngForm">
+  <mat-form-field class="select-mat-form-field" appearance="outline">
+    <mat-label>Buscar por</mat-label>
+    <mat-select [(ngModel)]="opcionBusqueda" name="opcionBusqueda" required>
+      <mat-option *ngFor="let opcion of opcionesBusqueda" [value]="opcion.key">
+        {{opcion.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <mat-form-field class="search-mat-form-field" appearance="outline">
     <input matInput type="text" placeholder="Dato a buscar" [(ngModel)]="datoABuscar" name="datoABuscar" required>
     <button type="submit" mat-button matSuffix mat-icon-button aria-label="Buscar" [disabled]="!searchForm.form.valid">
       <mat-icon>search</mat-icon>
     </button>
   </mat-form-field>
-</form>-->
+</form>
 
 
 

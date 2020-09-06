@@ -36,4 +36,9 @@ export class ProductoService {
     const url = this.apiUrl + "/"  + producto.id;
     return this.http.put<boolean>(url,producto);
   }
+
+  findByNombreContaining(nombre:string):Observable<Producto[]>{
+    const url = this.apiUrl + "/fetchbyname/"  + nombre;
+    return this.http.get<Producto[]>(url);
+  }
 }

@@ -10,10 +10,11 @@ import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 
 import { RouterModule } from '@angular/router';
+import { AuthLayoutComponent } from './pages/auth-layout/auth-layout.component';
 
 
 @NgModule({
-  declarations: [BaseLayoutComponent],
+  declarations: [BaseLayoutComponent, AuthLayoutComponent],
   imports: [
     CommonModule,
     RouterModule,

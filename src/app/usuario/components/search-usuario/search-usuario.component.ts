@@ -20,23 +20,41 @@ interface TableElement {
 })
 export class SearchUsuarioComponent implements OnInit {
   
-  datoABuscar: number;
   usuarios: Usuario[];
+  opcionBusqueda = 'NOMBRE';
+  datoABuscar: any;
+  opcionesBusqueda = [
+    { key: 'NOMBRE', viewValue: 'Nombre' },
+    { key: 'ID', viewValue: 'Codigo' },
+  ];
   constructor(public dialogRef: MatDialogRef<SearchUsuarioComponent>,
     private snackBar: MatSnackBar, private usuarioService:UsuarioService) { }
 
   displayedColumns: string[] = ['id', 'nombre', 'apellido', 'dni'];
   dataSource = new MatTableDataSource<TableElement>();
   ngOnInit(): void {
-    this.onSearch();
+    this.usuarioService.findAll().subscribe(usuarios => {
+      this.usuarios = usuarios;
+      this.dataSource.data = this.buildTableData(this.usuarios);
+  })
   }
 
   onSearch(){
-    this.usuarioService.findAll().subscribe(usuarios => {
-        this.usuarios = usuarios;
-        this.dataSource.data = this.buildTableData(this.usuarios);
-
-    })
+    if (this.opcionBusqueda === 'NOMBRE'){
+      this.usuarioService.findByNombreContaining(this.datoABuscar).subscribe(
+        usuarios => {
+          this.usuarios = usuarios;
+          this.dataSource = new MatTableDataSource(this.usuarios);
+        }
+      )
+    } else {
+      this.usuarioService.findById(this.datoABuscar).subscribe(
+        usuarios => {
+          this.usuarios = [usuarios];
+          this.dataSource = new MatTableDataSource(this.usuarios);
+        }
+      )
+    }
   }
 
   buildTableData(usuarios:Usuario[]){

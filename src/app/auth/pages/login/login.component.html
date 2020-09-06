@@ -1,0 +1,28 @@
+<div class="container">
+    <form novalidate autocomplete="off" #login="ngForm" (ngSubmit)="onSubmit()">
+        <mat-card>
+            <mat-card-header>
+
+            </mat-card-header>
+            <img mat-card-image class="logo-mat-card-image" src="assets/images/logo.jpeg" alt="Logo Empresa">
+
+            <mat-card-content>
+                <mat-form-field class="full-width" appearance="standard">
+                    <mat-label>Correo</mat-label>
+                    <input type="text" matInput placeholder="Usuario..." [(ngModel)]="correo" name="correo" required>
+                </mat-form-field>
+
+                <mat-form-field class="full-width " appearance="standard">
+                    <mat-label>Clave</mat-label>
+                    <input autocomplete="new-password" type="password" matInput placeholder="Clave"
+                        [(ngModel)]="password" name="password" required>
+                    <mat-hint>Min 6 caracteres</mat-hint>
+                </mat-form-field>
+            </mat-card-content>
+
+            <mat-card-actions align="center">
+                <button type="submit" mat-stroked-button color="primary">INGRESAR</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>

@@ -1,9 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BaseLayoutComponent } from './shared/pages/base-layout/base-layout.component';
+import { AuthModule } from './auth/auth.module';
+import { AuthLayoutComponent } from './shared/pages/auth-layout/auth-layout.component';
 
 
 const routes: Routes = [
+  {
+    path: 'auth', 
+    component: AuthLayoutComponent,
+    children: [
+      { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
+    ]
+  },
   {
     path: '',
     component: BaseLayoutComponent,
@@ -13,7 +22,7 @@ const routes: Routes = [
       { path: 'boletas', loadChildren: () => import('./boleta/boleta.module').then(m => m.BoletaModule) },
     ]
   },
-
+  
 ];
 
 @NgModule({

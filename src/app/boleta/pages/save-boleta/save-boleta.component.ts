@@ -12,14 +12,10 @@ import { UsuarioService } from 'src/app/usuario/services/usuario.service';
 import { Usuario } from 'src/app/usuario/models/usuario';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchUsuarioComponent } from 'src/app/usuario/components/search-usuario/search-usuario.component';
+import { AddDetalleComponent } from '../../components/add-detalle/add-detalle.component';
+import { Producto } from 'src/app/productos/models/producto';
 
-interface TableElement {
-  codProducto: number;
-  nombreProducto: string;
-  cantidad: number;
-  precioProducto: number;
-  subtotal: number;
-}
+
 
 @Component({
   selector: 'app-save-boleta',
@@ -32,12 +28,15 @@ export class SaveBoletaComponent implements OnInit {
   opcionSeleccionada = '';
   salirLink = '';
   role = '';
+  cantidad = 1;
+  producto: Producto;
   boleta = new Boleta();
   usuario: Usuario = new Usuario();
   detallesBoleta: DetalleBoleta[] = new Array();
-  displayedColumns: string[] = ['codProducto', 'nombreProducto', 'cantidad', 'precioProducto', 'subtotal'];
-  dataSource = new MatTableDataSource<TableElement>();
+  displayedColumns: string[] = ['codProducto', 'nombreProducto', 'precioProducto', 'cantidad', 'subtotal'];
+  dataSource = new MatTableDataSource<DetalleBoleta>();
 
+  data: DetalleBoleta[] = new Array();
   constructor(private productoService: ProductoService, private boletaService: BoletaService,
     private usuarioService: UsuarioService, private _snackBar: MatSnackBar, private route: ActivatedRoute,
     private router: Router, public dialog: MatDialog,) { }
@@ -81,31 +80,25 @@ export class SaveBoletaComponent implements OnInit {
           this.productoService.findById(detalle.productoId).subscribe(producto => {
             detalle.producto = producto;
             this.detallesBoleta.push(detalle);
-            this.dataSource.data = this.buildTable();
+            this.dataSource = new MatTableDataSource(this.detallesBoleta);
+            console.log(this.dataSource.data)
           })
         })
       })
     })
   }
 
-  buildTable() {
-    const data: TableElement[] = new Array();
-    this.detallesBoleta.forEach(e => {
-      data.push({
-        codProducto: e.productoId,
-        cantidad: e.cantidad,
-        nombreProducto: e.producto.nombre,
-        precioProducto: e.producto.precio,
-        subtotal: (e.cantidad * e.producto.precio)
-      })
-    })
-    return data;
-  }
-
   saveBoleta({ value, valid }: { value: Boleta, valid: boolean }) {
     let link = '../';
     let url = '../';
 
+    this.boleta.usuarioId = this.usuario.id;
+    this.boleta.detalleBoleta = new Array<DetalleBoleta>();
+    console.log(this.detallesBoleta)
+    this.detallesBoleta.forEach(detalle => {
+      var detalle : DetalleBoleta = new DetalleBoleta(detalle.cantidad,detalle.productoId)
+      this.boleta.detalleBoleta.push(detalle);
+    })
     if (valid) {
       if (this.boleta.id) {
         this.boletaService.edit(this.boleta).subscribe(id => {
@@ -126,4 +119,69 @@ export class SaveBoletaComponent implements OnInit {
     }
   }
 
+
+  addDetalle() {
+    const dialogRef = this.dialog.open(AddDetalleComponent, {
+      width: '800px',
+    });
+    dialogRef.afterClosed().subscribe(producto => {
+      if (producto) {
+        this.producto = producto;
+        if (this.detallesBoleta.length == 0){
+          this.detallesBoleta.push({
+            boletaId: this.boleta.id,
+            cantidad: this.cantidad,
+            id: null,
+            producto: this.producto,
+            productoId: this.producto.id,
+            subtotal: this.cantidad * this.producto.precio
+          })
+        }
+        this.detallesBoleta.forEach(detalle => {
+          if (detalle.productoId == this.producto.id) {
+            detalle.producto = this.producto;
+          } else {
+            this.detallesBoleta.push({
+              boletaId: this.boleta.id,
+              cantidad: this.cantidad,
+              id: null,
+              producto: this.producto,
+              productoId: this.producto.id,
+              subtotal: this.cantidad * this.producto.precio
+            })
+          }
+          this.dataSource.data = this.detallesBoleta;
+
+        })
+
+      }
+    }
+    );
+  }
+
+  actualizarSubTotal(element:DetalleBoleta) {
+
+ 
+    this.detallesBoleta.forEach(detalle => {
+      if (detalle.productoId == element.productoId) {
+        if (element.producto.stock >= element.cantidad) {
+          console.log(detalle.cantidad)
+          console.log(element.cantidad)
+          detalle.cantidad = element.cantidad
+          detalle.subtotal = element.cantidad * element.producto.precio
+        } else {
+          this._snackBar.open('No hay suficiente stock', '', { duration: 2000 });
+          detalle.cantidad = 0;
+          detalle.subtotal = 0;
+        }
+      }
+    })
+    console.log(this.detallesBoleta)
+    this.dataSource.data = this.detallesBoleta
+  
+  }
+  
+  getTotalCost() {
+    return this.dataSource.data.map(t => t.subtotal).reduce((acc, value) => acc + value, 0);
+  }
 }
