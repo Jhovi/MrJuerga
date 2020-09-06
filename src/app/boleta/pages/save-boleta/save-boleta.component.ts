@@ -81,7 +81,6 @@ export class SaveBoletaComponent implements OnInit {
             detalle.producto = producto;
             this.detallesBoleta.push(detalle);
             this.dataSource = new MatTableDataSource(this.detallesBoleta);
-            console.log(this.dataSource.data)
           })
         })
       })
@@ -94,9 +93,8 @@ export class SaveBoletaComponent implements OnInit {
 
     this.boleta.usuarioId = this.usuario.id;
     this.boleta.detalleBoleta = new Array<DetalleBoleta>();
-    console.log(this.detallesBoleta)
     this.detallesBoleta.forEach(detalle => {
-      var detalle : DetalleBoleta = new DetalleBoleta(detalle.cantidad,detalle.productoId)
+      var detalle: DetalleBoleta = new DetalleBoleta(detalle.cantidad, detalle.productoId)
       this.boleta.detalleBoleta.push(detalle);
     })
     if (valid) {
@@ -119,7 +117,6 @@ export class SaveBoletaComponent implements OnInit {
     }
   }
 
-
   addDetalle() {
     const dialogRef = this.dialog.open(AddDetalleComponent, {
       width: '800px',
@@ -127,7 +124,7 @@ export class SaveBoletaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(producto => {
       if (producto) {
         this.producto = producto;
-        if (this.detallesBoleta.length == 0){
+        if (this.detallesBoleta.length == 0) {
           this.detallesBoleta.push({
             boletaId: this.boleta.id,
             cantidad: this.cantidad,
@@ -136,37 +133,35 @@ export class SaveBoletaComponent implements OnInit {
             productoId: this.producto.id,
             subtotal: this.cantidad * this.producto.precio
           })
+        } else {
+          this.detallesBoleta.forEach(detalle => {
+            var sonIguales = (detalle.productoId == this.producto.id)
+            var existeProducto = (this.detallesBoleta.find(e => e.productoId == this.producto.id)) ? true : false;
+
+            if ((!sonIguales && !existeProducto)) {
+              this.detallesBoleta.push({
+                boletaId: this.boleta.id,
+                cantidad: this.cantidad,
+                id: null,
+                producto: this.producto,
+                productoId: this.producto.id,
+                subtotal: this.cantidad * this.producto.precio
+              })
+            } else {
+              this._snackBar.open('Producto: ' + this.producto.nombre + ' ya fue registrado', '', { duration: 2000 });
+            }
+          })
         }
-        this.detallesBoleta.forEach(detalle => {
-          if (detalle.productoId == this.producto.id) {
-            detalle.producto = this.producto;
-          } else {
-            this.detallesBoleta.push({
-              boletaId: this.boleta.id,
-              cantidad: this.cantidad,
-              id: null,
-              producto: this.producto,
-              productoId: this.producto.id,
-              subtotal: this.cantidad * this.producto.precio
-            })
-          }
-          this.dataSource.data = this.detallesBoleta;
-
-        })
-
+        this.dataSource.data = this.detallesBoleta;
       }
     }
     );
   }
 
-  actualizarSubTotal(element:DetalleBoleta) {
-
- 
+  actualizarSubTotal(element: DetalleBoleta) {
     this.detallesBoleta.forEach(detalle => {
       if (detalle.productoId == element.productoId) {
         if (element.producto.stock >= element.cantidad) {
-          console.log(detalle.cantidad)
-          console.log(element.cantidad)
           detalle.cantidad = element.cantidad
           detalle.subtotal = element.cantidad * element.producto.precio
         } else {
@@ -176,11 +171,9 @@ export class SaveBoletaComponent implements OnInit {
         }
       }
     })
-    console.log(this.detallesBoleta)
     this.dataSource.data = this.detallesBoleta
-  
   }
-  
+
   getTotalCost() {
     return this.dataSource.data.map(t => t.subtotal).reduce((acc, value) => acc + value, 0);
   }
