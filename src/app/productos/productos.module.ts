@@ -13,9 +13,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule  } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { ProductsByCategoryComponent } from './pages/products-by-category/products-by-category.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
-  declarations: [AdmProductosComponent, SaveProductoComponent],
+  declarations: [AdmProductosComponent, SaveProductoComponent, ProductsByCategoryComponent],
   imports: [
     CommonModule,
     ProductosRoutingModule,
@@ -27,6 +29,7 @@ import {MatInputModule} from '@angular/material/input';
     MatSnackBarModule,
     FormsModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatInputModule,
   ]
 })

@@ -14,6 +14,7 @@ export class SaveProductoComponent implements OnInit {
   salirLink = '';
   role = '';
   producto = new Producto();
+  selectCategoryList : String[] = ["Whisky", "Ron", "Cerveza","Vino","Vodka","Tequila","Piqueos","Otros"]
 
   constructor(private productoService:ProductoService,
     private _snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router,) { }

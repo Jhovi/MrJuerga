@@ -11,4 +11,5 @@ export class Usuario {
     dni:string;
     estado:string;
     edad:number;
+    genero:number;
 }

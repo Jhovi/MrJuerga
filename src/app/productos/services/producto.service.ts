@@ -41,4 +41,9 @@ export class ProductoService {
     const url = this.apiUrl + "/fetchbyname/"  + nombre;
     return this.http.get<Producto[]>(url);
   }
+
+  findByCategory(categoria:string):Observable<Producto[]>{
+    const url = this.apiUrl + "/fetchbycategory/" + categoria;
+    return this.http.get<Producto[]>(url);
+  }
 }

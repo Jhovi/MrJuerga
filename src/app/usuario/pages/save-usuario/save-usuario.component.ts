@@ -3,6 +3,7 @@ import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-save-usuario',
@@ -23,6 +24,30 @@ export class SaveUsuarioComponent implements OnInit {
   passwordHidden: boolean;
   confirmPasswordHidden: boolean;
 
+  imagenGeneroMap: Map<number, string> = new Map([
+    [0, 'assets/images/avatar_hombre.jpg'],
+    [1, 'assets/images/avatar_femenino.png'],
+    [2, 'assets/images/avatar_desconocido.png']
+  ]);
+
+
+
+  todo = [
+    'assets/images/avatar_hombre.jpg',
+    'assets/images/avatar_femenino.png',
+    'assets/images/avatar_desconocido.png'
+  ];
+
+  done = [
+    
+  ];
+
+
+
+
+
+
+  
 
 
   constructor(private usuarioService: UsuarioService,
@@ -53,6 +78,7 @@ export class SaveUsuarioComponent implements OnInit {
       this.usuario = usuario;
       this.password = this.usuario.password;
       this.confirmPassword = this.usuario.password;
+      this.done = [this.imagenGeneroMap.get(this.usuario.genero)];
     })
   }
 
@@ -95,4 +121,19 @@ export class SaveUsuarioComponent implements OnInit {
       }
     }
   }
+
+  drop(event: CdkDragDrop<string[]>) {
+
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+
+
+  }
+
 }

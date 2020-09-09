@@ -93,12 +93,10 @@ export class SaveBoletaComponent implements OnInit {
 
     this.boleta.usuarioId = this.usuario.id;
     this.boleta.detalleBoleta = new Array<DetalleBoleta>();
-    this.detallesBoleta.forEach(detalle => {
-      var detalle: DetalleBoleta = new DetalleBoleta(detalle.cantidad, detalle.productoId)
-      this.boleta.detalleBoleta.push(detalle);
-    })
+   
     if (valid) {
       if (this.boleta.id) {
+        this.boleta.detalleBoleta = this.detallesBoleta;
         this.boletaService.edit(this.boleta).subscribe(id => {
           this._snackBar.open('Actualizacion con éxito', '', { duration: 2000 });
           this.router.navigate([link + url + 'adm'], { relativeTo: this.route });
@@ -107,6 +105,10 @@ export class SaveBoletaComponent implements OnInit {
             this._snackBar.open(err, '', { duration: 2000 });
           })
       } else {
+        this.detallesBoleta.forEach(detalle => {
+          var detalle: DetalleBoleta = new DetalleBoleta(detalle.cantidad, detalle.productoId)
+          this.boleta.detalleBoleta.push(detalle);
+        })
         this.boletaService.create(this.boleta).subscribe(id => {
           this._snackBar.open('Creación con éxito', '', { duration: 2000 });
           this.router.navigate([link + 'adm'], { relativeTo: this.route });

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductosModule } from './productos.module';
 import { AdmProductosComponent } from './pages/adm-productos/adm-productos.component';
 import { SaveProductoComponent } from './pages/save-producto/save-producto.component';
+import { ProductsByCategoryComponent } from './pages/products-by-category/products-by-category.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
     path: ':id/update',
     component: SaveProductoComponent,
     data: { role: 'edit' }
+  },
+  {
+    path: 'category/:category',
+    component: ProductsByCategoryComponent
   }
 ];
 

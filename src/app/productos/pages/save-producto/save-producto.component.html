@@ -24,8 +24,11 @@
 
             <mat-form-field class="input-field-producto" appearance="outline">
                 <mat-label>Categoria</mat-label>
-                <input matInput type="text" [(ngModel)]="producto.categoria" name="categoria" required
-                    [disabled]="role =='view'">
+                <mat-select [(ngModel)]="producto.categoria" name="categoria" [disabled]="role =='view'">
+                    <mat-option *ngFor="let categoria of selectCategoryList" [value]="categoria">
+                        {{categoria}}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
 
             <mat-form-field class="input-field-producto" appearance="outline">

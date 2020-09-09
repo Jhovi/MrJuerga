@@ -53,3 +53,9 @@
   margin-bottom: 6px;
   z-index: 1; /* TODO */
 }
+
+.menu-button{
+  margin-top: 1rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
