@@ -46,4 +46,9 @@ export class ProductoService {
     const url = this.apiUrl + "/fetchbycategory/" + categoria;
     return this.http.get<Producto[]>(url);
   }
+
+  findImagen(name:string):Observable<string>{
+    const url = this.apiUrl + "/getImage/"  + name;
+    return this.http.get<string>(url);
+  }
 }

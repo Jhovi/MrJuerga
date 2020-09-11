@@ -26,7 +26,7 @@
 
             <mat-form-field class="input-field-producto" appearance="outline">
                 <mat-label>Fecha de venta</mat-label>
-                <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento" [(ngModel)]="boleta.fecha"
+                <input matInput [matDatepicker]="picker" placeholder="Fecha" [(ngModel)]="boleta.fecha"
                     name="fecha" required [disabled]="role =='view'">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>

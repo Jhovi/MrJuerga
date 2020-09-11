@@ -134,3 +134,15 @@
   box-sizing: border-box;
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+.genero-image{
+  margin: auto;
+  height: 300px;
+  width: 300px;
+}
+
+.genero-image-view{
+  margin-left: 35%;
+  height: 300px;
+  width: 300px;
+}

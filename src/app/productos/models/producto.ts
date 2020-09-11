@@ -6,4 +6,5 @@ export class Producto {
     categoria:string;
     estado:string;
     stock:number;
+    imagen:string;
 }

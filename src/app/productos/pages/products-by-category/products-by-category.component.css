@@ -22,3 +22,7 @@ mat-card img {
   height: 350px;
   object-fit: contain;
 }
+
+.btn-ver{
+  margin-left: 17rem;
+}

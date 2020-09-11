@@ -1,0 +1,16 @@
+<mat-card class="bar-chart-card">
+    <mat-card-header>
+      <mat-card-title>Top 5 usuarios con mas gastos</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="bar-chart-container">
+        <div>
+          <div style="display: block">
+            <canvas baseChart *ngIf="chartReady" [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions"
+              [colors]="chartColors" [legend]="chartLegend" [chartType]="chartType" [plugins]="chartPlugins">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>

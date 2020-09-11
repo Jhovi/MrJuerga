@@ -31,6 +31,12 @@ export class SaveUsuarioComponent implements OnInit {
   ]);
 
 
+  imagenToGeneroMap: Map<string, number> = new Map([
+    ['assets/images/avatar_hombre.jpg', 0],
+    ['assets/images/avatar_femenino.png', 1],
+    ['assets/images/avatar_desconocido.png', 2]
+  ]);
+
 
   todo = [
     'assets/images/avatar_hombre.jpg',
@@ -39,15 +45,8 @@ export class SaveUsuarioComponent implements OnInit {
   ];
 
   done = [
-    
+
   ];
-
-
-
-
-
-
-  
 
 
   constructor(private usuarioService: UsuarioService,
@@ -79,6 +78,7 @@ export class SaveUsuarioComponent implements OnInit {
       this.password = this.usuario.password;
       this.confirmPassword = this.usuario.password;
       this.done = [this.imagenGeneroMap.get(this.usuario.genero)];
+      this.todo = this.todo.filter(e => e != this.imagenGeneroMap.get(this.usuario.genero))
     })
   }
 
@@ -87,6 +87,7 @@ export class SaveUsuarioComponent implements OnInit {
   saveUsuario({ value, valid }: { value: Usuario, valid: boolean }) {
     let link = '../';
     let url = '../';
+    this.usuario.genero = this.imagenToGeneroMap.get(this.done.toString())
     if (valid) {
       if (this.usuario.id) {
         this.usuarioService.edit(this.usuario).subscribe(id => {

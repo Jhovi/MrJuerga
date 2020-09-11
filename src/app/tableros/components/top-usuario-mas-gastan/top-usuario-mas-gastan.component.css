@@ -1,0 +1,12 @@
+.bar-chart-container{
+    margin-top: 1rem;
+    width: 500px;
+    height: 500px;
+}
+
+.bar-chart-card{
+    width: 500px;
+    margin-left: 5%;
+    height: 350px;
+    float: left;
+}

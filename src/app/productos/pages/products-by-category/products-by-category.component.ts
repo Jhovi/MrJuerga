@@ -24,7 +24,12 @@ export class ProductsByCategoryComponent implements OnInit {
     console.log(category)
     this.productoService.findByCategory(category).subscribe(productos => {
       this.productos = productos;
-      console.log(this.productos);
+      this.productos.forEach(producto => {
+        this.productoService.findImagen(producto.nombre).subscribe(imagen => {
+          producto.imagen = 'data:image/jpeg;base64,' + imagen;
+          console.log(producto);
+        })
+      })
     })
   }
 

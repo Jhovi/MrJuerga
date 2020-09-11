@@ -1,0 +1,34 @@
+<mat-card class="bar-chart-card">
+    <mat-card-header>
+        <mat-card-title>Top 5 productos</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="bar-chart-container">
+            <div>
+                <div style="display: block">
+                    <canvas baseChart *ngIf="chartReady" [datasets]="chartData" [labels]="chartLabels"
+                        [options]="chartOptions" [colors]="chartColors" [legend]="chartLegend" [chartType]="chartType"
+                        [plugins]="chartPlugins">
+                    </canvas>
+                </div>
+                <mat-form-field class="input-field-producto" appearance="outline">
+                    <mat-label>Fecha desde</mat-label>
+                    <input matInput [matDatepicker]="picker1" (dateChange)="onChangeFechas($event.target.value,fechaHasta)"
+                        placeholder="Fecha" [(ngModel)]="fechaDesde" name="fechaDesde" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="input-field-producto" appearance="outline">
+                    <mat-label>Fecha hasta</mat-label>
+                    <input matInput [matDatepicker]="picker" (dateChange)="onChangeFechas(fechaDesde,$event.target.value)"
+                        placeholder="Fecha" [(ngModel)]="fechaHasta" name="fechaHasta" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+
+
+    </mat-card-content>
+</mat-card>

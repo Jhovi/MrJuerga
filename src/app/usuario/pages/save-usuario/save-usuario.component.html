@@ -15,18 +15,21 @@
     <mat-card-content>
         <form id="saveForm" (ngSubmit)="saveUsuario(saveForm)" #saveForm="ngForm">
 
-            <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
-                cdkDropListSortingDisabled  class="example-list"
-                (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of todo" cdkDrag> <img [src]="item" alt="your image"
-                        width="80%" /></div>
-            </div>
+            <div *ngIf="role !='view'">
+                <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
+                    cdkDropListSortingDisabled class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="genero-image" *ngFor="let item of todo" cdkDrag> <img *ngIf="role !='view'" [src]="item"
+                            alt="your image" width="80%" /></div>
+                </div>
 
-            <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
-                class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of done" cdkDrag> <img [src]="item" alt="your image"
-                        width="80%" /></div>
+                <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
+                    class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="genero-image" *ngFor="let item of done" cdkDrag> <img [src]="item" alt="your image"
+                            width="80%" /></div>
+                </div>
             </div>
+            <img *ngIf="role =='view'" class="genero-image-view" [src]="done" alt="your image" width="80%" />
+            <br>
 
             <mat-form-field class="input-field-usuario" appearance="outline">
                 <mat-label>Nombre</mat-label>
@@ -67,22 +70,22 @@
 
             <mat-form-field appearance="outline" class="input-field-usuario">
                 <mat-label> Contraseña </mat-label>
-                <input matInput [type]="passwordHidden ? 'password' : 'text'" #new [minlength]="minLength"
+                <input  [disabled]="role =='view'"  matInput [type]="passwordHidden ? 'password' : 'text'" #new [minlength]="minLength"
                     [(ngModel)]="password" name="password" (keyup)="verificarPasswordIguales()" required>
                 <mat-hint align="end">{{new.value.length}} / {{minLength}}</mat-hint>
-                <button mat-icon-button type="button" matSuffix (click)="passwordHidden = !passwordHidden">
+                <button  [disabled]="role =='view'" mat-icon-button type="button" matSuffix (click)="passwordHidden = !passwordHidden">
                     <mat-icon>{{passwordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="input-field-usuario">
                 <mat-label>Confirmar Contraseña </mat-label>
-                <input matInput [type]="confirmPasswordHidden ? 'password' : 'text'" #confirm [minlength]="minLength"
+                <input  [disabled]="role =='view'" matInput [type]="confirmPasswordHidden ? 'password' : 'text'" #confirm [minlength]="minLength"
                     [(ngModel)]="confirmPassword" name="confirmPassword" (keyup)="verificarPasswordIguales()" required>
                 <mat-hint align="end">{{confirm.value.length}} / {{minLength}}</mat-hint>
                 <mat-hint align="start" *ngIf="!passwordIguales" class="validate-password">La contraseña no coincide
                 </mat-hint>
-                <button mat-icon-button type="button" matSuffix
+                <button  [disabled]="role =='view'" mat-icon-button type="button" matSuffix
                     (click)="confirmPasswordHidden = !confirmPasswordHidden">
                     <mat-icon>{{confirmPasswordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>

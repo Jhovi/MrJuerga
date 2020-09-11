@@ -8,26 +8,26 @@
             <h1 class="example-app-name">Mr. Juerga</h1>
             <span class="espaciar"></span>
 
-     
+
 
             <button class="menu-button" mat-button [matMenuTriggerFor]="usuarioMenu">Usuario</button>
             <mat-menu #usuarioMenu="matMenu">
                 <button mat-menu-item routerLink="/../../../usuarios/adm">Listar usuarios</button>
                 <button mat-menu-item routerLink="/../../../usuarios/save">Registrar usuario</button>
-               
-                
+
+
             </mat-menu>
 
             <button class="menu-button" mat-button [matMenuTriggerFor]="productoMenu">Productos</button>
             <mat-menu #productoMenu="matMenu">
                 <button mat-menu-item routerLink="/../../../productos/adm">Listar productos</button>
                 <button mat-menu-item routerLink="/../../../productos/save">Registrar producto</button>
-                <button mat-menu-item [matMenuTriggerFor]="categorias" >Categorias</button>                
+                <button mat-menu-item [matMenuTriggerFor]="categorias">Categorias</button>
             </mat-menu>
 
             <button class="menu-button" mat-button [matMenuTriggerFor]="boletaMenu">Boleta</button>
             <mat-menu #boletaMenu="matMenu">
-                <button mat-menu-item routerLink="/../../../boletas/adm" >Listar boletas</button>
+                <button mat-menu-item routerLink="/../../../boletas/adm">Listar boletas</button>
                 <button mat-menu-item routerLink="/../../../boletas/save">Registrar boleta</button>
             </mat-menu>
 
@@ -41,27 +41,11 @@
                 <button mat-menu-item routerLink="/../../../productos/category/tequila">Tequila</button>
                 <button mat-menu-item routerLink="/../../../productos/category/piqueos">Piqueos</button>
                 <button mat-menu-item routerLink="/../../../productos/category/otros">Otros</button>
-              </mat-menu>
-            <!--    
-            <button  mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon matTooltip="Opciones">more_vert</mat-icon>
-            </button>
-            Esto es un comentario 
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="/perfil">
-                    <mat-icon>account_box</mat-icon>
-                    <span>Mi Perfil</span>
-                </button>
-                <button mat-menu-item >
-                    <mat-icon>enhanced_encryption</mat-icon>
-                    <span>Cambiar Contraseña</span>
-                </button>
-                <button mat-menu-item >
-                    <mat-icon>exit_to_app</mat-icon>
-                    <span>Cerrar Sesión</span>
-                </button>
             </mat-menu>
-              -->
+
+            <button class="menu-button" mat-button routerLink="/../../../tableros/adm   ">Estadistica</button>
+
+
         </mat-toolbar-row>
     </mat-toolbar>
 
