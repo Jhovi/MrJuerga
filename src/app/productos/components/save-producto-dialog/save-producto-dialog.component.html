@@ -1,17 +1,5 @@
-<mat-toolbar class="option-toolbar">
-    <mat-toolbar-row class="path-mat-toolbar-row">
-        <h3 class="path-h3">Registrar Producto</h3>
-    </mat-toolbar-row>
-    <mat-toolbar-row class="actions-mat-toolbar-row">
-        <button mat-stroked-button color="primary" [disabled]="!saveForm.form.valid" form="saveForm"
-            *ngIf="role!=='view'"> Guardar</button>
-        <button mat-stroked-button color="primary" *ngIf="role==='view'" routerLink='update'> Editar</button>
-        <button mat-stroked-button color="warn" class="btn-salir" [routerLink]="salirLink"> Atras</button>
-    </mat-toolbar-row>
-</mat-toolbar>
-
-
 <mat-card class="save-producto-card">
+    <mat-card-title> Datos producto</mat-card-title>
     <mat-card-content>
         <form id="saveForm" (ngSubmit)="saveProducto(saveForm)" #saveForm="ngForm">
 
@@ -24,7 +12,7 @@
 
             <mat-form-field class="input-field-producto" appearance="outline">
                 <mat-label>Categoria</mat-label>
-                <mat-select [(ngModel)]="producto.categoria" name="categoria" [disabled]="role =='view'">
+                <mat-select [(ngModel)]="producto.categoria" name="categoria" [disabled]="role =='view'" required>
                     <mat-option *ngFor="let categoria of selectCategoryList" [value]="categoria">
                         {{categoria}}
                     </mat-option>
@@ -53,4 +41,8 @@
 
         </form>
     </mat-card-content>
+    <mat-card-actions class="card-buttons">
+        <button mat-stroked-button color="primary" [disabled]="!saveForm.form.valid" form="saveForm">Aceptar</button>
+        <button mat-stroked-button color="warn" (click)="cerrarDialog()">Cancelar</button>
+    </mat-card-actions>
 </mat-card>

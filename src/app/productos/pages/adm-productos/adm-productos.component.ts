@@ -4,6 +4,8 @@ import { Producto } from '../../models/producto';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { SaveProductoDialogComponent } from '../../components/save-producto-dialog/save-producto-dialog.component';
 
 @Component({
   selector: 'app-adm-productos',
@@ -12,18 +14,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AdmProductosComponent implements OnInit {
 
-  productos : Producto[];
-  displayedColumns: string[] = ['codProducto', 'nombre', 'descripcion', 'precio','categoria', 'stock', 'acciones'];
+  productos: Producto[];
+  displayedColumns: string[] = ['codProducto', 'nombre', 'descripcion', 'precio', 'categoria', 'stock', 'acciones'];
   dataSource: MatTableDataSource<Producto>;
-  constructor(private productoService:ProductoService,private router: Router, 
-    private route: ActivatedRoute,private _snackBar: MatSnackBar) { }
+  constructor(private productoService: ProductoService, private router: Router,
+    public dialog: MatDialog,
+    private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.findProductos();
   }
 
 
-  findProductos(){
+  findProductos() {
     this.productoService.findAll().subscribe(productos => {
       this.productos = productos;
       this.productos = this.productos.filter(producto => producto.estado == 'activo')
@@ -31,25 +34,47 @@ export class AdmProductosComponent implements OnInit {
     })
   }
 
-  onSelect(producto:Producto){
-    if (producto.id) {
-      let link = '../'
-      this.router.navigate([link + producto.id ], { relativeTo: this.route });
-    }
-  }
-  
-  saveProductoView(){
-    let link = '../'
-    this.router.navigate([link + "/save" ], { relativeTo: this.route });
+  onSelect(producto: Producto) {
+    const dialogRef = this.dialog.open(SaveProductoDialogComponent, {
+      width: '400px',
+      data: {
+        role: "edit",
+        producto: { ...producto }
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(producto => {
+      if (producto) {
+        this.findProductos();
+        this._snackBar.open('Actualizacion con éxito', '', { duration: 2000 });
+      }
+
+    });
   }
 
-  eliminar(producto:Producto){
-    this.productoService.deleteById(producto).subscribe( () => {
+  saveProductoView() {
+    const dialogRef = this.dialog.open(SaveProductoDialogComponent, {
+      width: '400px',
+      data: {
+        role: "create"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(producto => {
+      if (producto) {
+        this.findProductos();
+        this._snackBar.open('Creación con éxito', '', { duration: 2000 });
+      }
+    });
+  }
+
+  eliminar(producto: Producto) {
+    this.productoService.deleteById(producto).subscribe(() => {
       this._snackBar.open('Actualizacion con éxito', '', { duration: 2000 });
       this.findProductos();
     },
       err => {
         this._snackBar.open(err, '', { duration: 2000 });
-    })
+      })
   }
 }

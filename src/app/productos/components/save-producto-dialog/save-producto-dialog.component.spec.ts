@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SaveProductoComponent } from './save-producto.component';
+import { SaveProductoDialogComponent } from './save-producto-dialog.component';
 
-describe('SaveProductoComponent', () => {
-  let component: SaveProductoComponent;
-  let fixture: ComponentFixture<SaveProductoComponent>;
+describe('SaveProductoDialogComponent', () => {
+  let component: SaveProductoDialogComponent;
+  let fixture: ComponentFixture<SaveProductoDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SaveProductoComponent ]
+      declarations: [ SaveProductoDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SaveProductoComponent);
+    fixture = TestBed.createComponent(SaveProductoDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

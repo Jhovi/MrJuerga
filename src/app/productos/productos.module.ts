@@ -8,16 +8,17 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
-import { SaveProductoComponent } from './pages/save-producto/save-producto.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule  } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { ProductsByCategoryComponent } from './pages/products-by-category/products-by-category.component';
 import {MatSelectModule} from '@angular/material/select';
+import { SaveProductoDialogComponent } from './components/save-producto-dialog/save-producto-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [AdmProductosComponent, SaveProductoComponent, ProductsByCategoryComponent],
+  declarations: [AdmProductosComponent, ProductsByCategoryComponent, SaveProductoDialogComponent],
   imports: [
     CommonModule,
     ProductosRoutingModule,
@@ -31,6 +32,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    MatDialogModule,
   ]
 })
 export class ProductosModule { }
