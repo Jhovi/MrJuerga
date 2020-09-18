@@ -15,9 +15,9 @@ export class AdmUsuariosComponent implements OnInit {
   fechaActual = new Date();
   anioActual: number = this.fechaActual.getFullYear();
   usuarios: Usuario[];
-  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'correo','telefono', 'edad', 'dni', 'acciones'];
+  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'correo', 'telefono', 'edad', 'dni', 'acciones'];
   dataSource: MatTableDataSource<Usuario>;
-  constructor(private usuarioService:UsuarioService,private router: Router, 
+  constructor(private usuarioService: UsuarioService, private router: Router,
     private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
 
@@ -25,37 +25,47 @@ export class AdmUsuariosComponent implements OnInit {
     this.getUsuarios();
   }
 
-  getUsuarios(){
+  getUsuarios() {
     this.usuarioService.findAll().subscribe(usuarios => {
       this.usuarios = usuarios;
       this.usuarios.forEach(usuario => {
-        usuario.edad = this.anioActual - (+usuario.fechaNacimiento.slice(0,4))
+        usuario.edad = this.anioActual - (+usuario.fechaNacimiento.slice(0, 4))
       })
       this.usuarios = this.usuarios.filter(usuarios => usuarios.estado == 'Activo');
       this.dataSource = new MatTableDataSource(this.usuarios);
     })
   }
 
-  onSelect(usuario:Usuario){
+  onSelect(usuario: Usuario) {
     if (usuario.id) {
       let link = '../'
-      this.router.navigate([link + usuario.id ], { relativeTo: this.route });
+      this.router.navigate([link + usuario.id], { relativeTo: this.route });
     }
   }
 
-  eliminar(usuario:Usuario){
+  eliminar(usuario: Usuario) {
     console.log(usuario);
-    this.usuarioService.delete(usuario).subscribe( () => {
+    this.usuarioService.delete(usuario).subscribe(() => {
       this._snackBar.open('Eliminacion con éxito', '', { duration: 2000 });
       this.getUsuarios();
     },
       err => {
         this._snackBar.open(err, '', { duration: 2000 });
-    })
+      })
   }
 
-  saveUsuarioView(){
+  saveUsuarioView() {
     let link = '../'
-    this.router.navigate([link + "/save" ], { relativeTo: this.route });
+    this.router.navigate([link + "/save"], { relativeTo: this.route });
+  }
+
+  generateExcel() {
+    this.usuarioService.generateExcel().subscribe((response) => {
+      const file = new Blob([response], { type: 'application/vnd.ms-excel' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    }, err => {
+      this._snackBar.open(err, '', { duration: 2000 });
+    })
   }
 }
