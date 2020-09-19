@@ -21,7 +21,6 @@
             <button class="menu-button" mat-button [matMenuTriggerFor]="productoMenu">Productos</button>
             <mat-menu #productoMenu="matMenu">
                 <button mat-menu-item routerLink="/../../../productos/adm">Listar productos</button>
-                <button mat-menu-item routerLink="/../../../productos/save">Registrar producto</button>
                 <button mat-menu-item [matMenuTriggerFor]="categorias">Categorias</button>
             </mat-menu>
 
@@ -45,6 +44,23 @@
 
             <button class="menu-button" mat-button routerLink="/../../../tableros/adm">Estadistica</button>
 
+            <button class="options-btn" color="white" mat-icon-button [matMenuTriggerFor]="options">
+                <mat-icon matTooltip="Opciones">more_vert</mat-icon>
+            </button>
+            <mat-menu  #options="matMenu">
+                <button mat-menu-item routerLink="/perfil">
+                    <mat-icon>account_box</mat-icon>
+                    <span>Mi Perfil</span>
+                </button>
+                <button mat-menu-item (click)="openChangePassword()">
+                    <mat-icon>enhanced_encryption</mat-icon>
+                    <span>Cambiar Contraseña</span>
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Cerrar Sesión</span>
+                </button>
+            </mat-menu>
 
         </mat-toolbar-row>
     </mat-toolbar>

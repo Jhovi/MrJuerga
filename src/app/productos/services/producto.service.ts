@@ -48,7 +48,7 @@ export class ProductoService {
   }
 
   findImagen(name:string):Observable<string>{
-    const url = this.apiUrl + "/getImage/"  + name;
+    const url = this.apiUrl + "/GetImage/"  + name;
     return this.http.get<string>(url);
   }
 }

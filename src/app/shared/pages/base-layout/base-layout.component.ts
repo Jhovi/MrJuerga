@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/usuario/services/usuario.service';
 import { Module, OpcionService } from '../../services/opcion.service';
 
 @Component({
@@ -8,13 +10,22 @@ import { Module, OpcionService } from '../../services/opcion.service';
 })
 export class BaseLayoutComponent implements OnInit {
   modules: Module[] = [
-    
+
   ]
-  constructor(private opcionService: OpcionService,) { }
+  constructor(private opcionService: OpcionService, private authService:UsuarioService,
+    private router: Router,) { }
 
   ngOnInit(): void {
-    
+
     this.modules = this.opcionService.getOpciones();
   }
 
+  openChangePassword() {
+
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/auth/login']);
+  }
 }

@@ -18,7 +18,7 @@ export class AdmProductosComponent implements OnInit {
   displayedColumns: string[] = ['codProducto', 'nombre', 'descripcion', 'precio', 'categoria', 'stock', 'acciones'];
   dataSource: MatTableDataSource<Producto>;
   constructor(private productoService: ProductoService, private router: Router,
-    public dialog: MatDialog,
+    public dialog: MatDialog, 
     private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
