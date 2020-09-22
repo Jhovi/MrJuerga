@@ -10,10 +10,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { ChangePasswordComponent } from './dialog/change-password/change-password.component';
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

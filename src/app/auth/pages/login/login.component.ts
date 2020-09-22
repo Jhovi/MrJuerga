@@ -36,4 +36,14 @@ export class LoginComponent implements OnInit {
       });
     
   }
+
+  invitadoUser(){
+    this.usuarioService.login('invitado','invitado').pipe(first()).subscribe(
+      authenticatedUser => {
+        this.router.navigate([this.returnUrl]);
+      },
+      err => {
+        this.snackBar.open( 'Usuario o contraseña incorrecta', '', { duration: 2000 });
+      });
+  }
 }

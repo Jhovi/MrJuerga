@@ -24,6 +24,8 @@ export class SaveUsuarioComponent implements OnInit {
   passwordHidden: boolean;
   confirmPasswordHidden: boolean;
 
+  loggedUser: Usuario = new Usuario();
+
   imagenGeneroMap: Map<number, string> = new Map([
     [0, 'assets/images/avatar_hombre.jpg'],
     [1, 'assets/images/avatar_femenino.png'],
@@ -53,6 +55,7 @@ export class SaveUsuarioComponent implements OnInit {
     private _snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router,) { }
 
   ngOnInit(): void {
+
     this.minLength = 6;
     this.passwordIguales = true;
     this.currentPasswordHidden = true;
@@ -136,5 +139,6 @@ export class SaveUsuarioComponent implements OnInit {
 
 
   }
+
 
 }

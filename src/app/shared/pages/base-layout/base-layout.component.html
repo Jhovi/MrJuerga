@@ -1,54 +1,59 @@
 <div class="example-container">
     <mat-toolbar color="primary">
         <mat-toolbar-row>
-            <!-- <button  mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon matTooltip="Mostrar menú" *ngIf="!sidenav.opened">menu</mat-icon>
-                <mat-icon matTooltip="Ocultar menú" *ngIf="sidenav.opened">close</mat-icon>
-            </button> -->
             <h1 class="example-app-name">Mr. Juerga</h1>
             <span class="espaciar"></span>
 
 
+            <div *ngIf="usuario.rol=='admin'">
+                <button class="menu-button" mat-button [matMenuTriggerFor]="usuarioMenu">Usuario</button>
+                <mat-menu #usuarioMenu="matMenu">
+                    <button mat-menu-item routerLink="/../../../usuarios/adm">Listar usuarios</button>
+                    <button mat-menu-item routerLink="/../../../usuarios/save">Registrar usuario</button>
 
-            <button class="menu-button" mat-button [matMenuTriggerFor]="usuarioMenu">Usuario</button>
-            <mat-menu #usuarioMenu="matMenu">
-                <button mat-menu-item routerLink="/../../../usuarios/adm">Listar usuarios</button>
-                <button mat-menu-item routerLink="/../../../usuarios/save">Registrar usuario</button>
+                </mat-menu>
 
-
-            </mat-menu>
-
+            </div>
             <button class="menu-button" mat-button [matMenuTriggerFor]="productoMenu">Productos</button>
             <mat-menu #productoMenu="matMenu">
-                <button mat-menu-item routerLink="/../../../productos/adm">Listar productos</button>
+                <div *ngIf="usuario.rol=='admin'">
+                    <button mat-menu-item routerLink="/../../../productos/adm">Listar productos</button>
+                </div>
                 <button mat-menu-item [matMenuTriggerFor]="categorias">Categorias</button>
             </mat-menu>
 
-            <button class="menu-button" mat-button [matMenuTriggerFor]="boletaMenu">Boleta</button>
-            <mat-menu #boletaMenu="matMenu">
-                <button mat-menu-item routerLink="/../../../boletas/adm">Listar boletas</button>
-                <button mat-menu-item routerLink="/../../../boletas/save">Registrar boleta</button>
-            </mat-menu>
+            <div *ngIf="usuario.rol!='invitado'">
+                <button class="menu-button" mat-button [matMenuTriggerFor]="boletaMenu">Boleta</button>
+                <mat-menu #boletaMenu="matMenu">
+                    <button mat-menu-item routerLink="/../../../boletas/adm">Listar boletas</button>
+                    <button mat-menu-item routerLink="/../../../boletas/save">Registrar boleta</button>
+                </mat-menu>
+            </div>
 
+
+            <div *ngIf="usuario.rol=='invitado'">
+                <button class="menu-button" (click)="logout()" mat-button>Comprar Productos</button>
+            </div>
 
             <mat-menu #categorias="matMenu">
-                <button mat-menu-item routerLink="/../../../productos/category/whisky">Wiskhy</button>
-                <button mat-menu-item routerLink="/../../../productos/category/ron">Ron</button>
-                <button mat-menu-item routerLink="/../../../productos/category/cerveza">Cerveza</button>
-                <button mat-menu-item routerLink="/../../../productos/category/vino">Vino</button>
-                <button mat-menu-item routerLink="/../../../productos/category/vodka">Vodka</button>
-                <button mat-menu-item routerLink="/../../../productos/category/tequila">Tequila</button>
-                <button mat-menu-item routerLink="/../../../productos/category/piqueos">Piqueos</button>
-                <button mat-menu-item routerLink="/../../../productos/category/otros">Otros</button>
+                <button mat-menu-item (click)="redirectCategory('whisky')">Wiskhy</button>
+                <button mat-menu-item (click)="redirectCategory('ron')">Ron</button>
+                <button mat-menu-item (click)="redirectCategory('cerveza')">Cerveza</button>
+                <button mat-menu-item (click)="redirectCategory('vino')">Vino</button>
+                <button mat-menu-item (click)="redirectCategory('vodka')">Vodka</button>
+                <button mat-menu-item (click)="redirectCategory('tequila')">Tequila</button>
+                <button mat-menu-item (click)="redirectCategory('piqueos')">Piqueos</button>
+                <button mat-menu-item (click)="redirectCategory('otros')">Otros</button>
             </mat-menu>
 
-            <button class="menu-button" mat-button routerLink="/../../../tableros/adm">Estadistica</button>
-
+            <div *ngIf="usuario.rol=='admin'">
+                <button class="menu-button" mat-button routerLink="/../../../tableros/adm">Estadistica</button>
+            </div>
             <button class="options-btn" color="white" mat-icon-button [matMenuTriggerFor]="options">
                 <mat-icon matTooltip="Opciones">more_vert</mat-icon>
             </button>
-            <mat-menu  #options="matMenu">
-                <button mat-menu-item routerLink="/perfil">
+            <mat-menu #options="matMenu">
+                <button mat-menu-item (click)="opcionPerfil()">
                     <mat-icon>account_box</mat-icon>
                     <span>Mi Perfil</span>
                 </button>
@@ -66,36 +71,6 @@
     </mat-toolbar>
 
 
-
-    <!-- <mat-sidenav-container  class="example-sidenav-container">
-        <mat-sidenav  #sidenav mode="over" style="width: 250px; ">
-            <mat-nav-list>
-                <div *ngFor = "let module of modules">
-                    <div *ngIf ="module.options.length == 1">
-                        <a mat-list-item *ngFor="let option of module.options" [routerLink]="option.path">
-                            <div class="estilo-nombre-modulo"> {{ option.name }} </div>
-                        </a>
-                    </div>
-                    <div *ngIf ="module.options.length > 1" >
-                        <mat-expansion-panel  [expanded] = "true">
-                            <mat-expansion-panel-header>
-                                <mat-panel-title class="estilo-nombre-modulo-panel">
-                                    {{ module.name }}
-                                </mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <a mat-list-item *ngFor="let option of module.options" [routerLink]="option.path">{{ option.name}}</a>
-                        </mat-expansion-panel>
-                    </div>
-                </div>
-              </mat-nav-list>
-        </mat-sidenav>
-
-        
-        <mat-sidenav-content>
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
-
-    </mat-sidenav-container> -->
     <router-outlet></router-outlet>
 
 

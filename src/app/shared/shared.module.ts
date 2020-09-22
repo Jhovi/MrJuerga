@@ -11,6 +11,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 
 import { RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './pages/auth-layout/auth-layout.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AuthLayoutComponent } from './pages/auth-layout/auth-layout.component';
     MatListModule,
     MatMenuModule,
     MatSidenavModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule,
   ]
 })
 export class SharedModule { }
