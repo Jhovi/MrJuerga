@@ -72,8 +72,13 @@ export class UsuarioService {
       }))
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('authenticatedUser');
     this.authenticatedUserSubject.next(null);
+  }
+
+  updatePassword(id: number, correo: string, password: string, newPassword: string): Observable<void> {
+    const url = this.apiUrl + "/updatepsw";
+    return this.http.put<void>(url, { 'id': id, 'correo': correo, 'password': password, 'newpassword': newPassword });
   }
 }

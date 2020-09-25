@@ -31,7 +31,7 @@ export class AdmUsuariosComponent implements OnInit {
       this.usuarios.forEach(usuario => {
         usuario.edad = this.anioActual - (+usuario.fechaNacimiento.slice(0, 4))
       })
-      this.usuarios = this.usuarios.filter(usuarios => usuarios.estado == 'activo');
+      this.usuarios = this.usuarios.filter(usuarios => usuarios.estado == 'activo' && usuarios.correo != 'admin' && usuarios.correo != 'invitado');
       this.dataSource = new MatTableDataSource(this.usuarios);
     })
   }

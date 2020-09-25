@@ -33,10 +33,7 @@ export class BaseLayoutComponent implements OnInit {
 
   openChangePassword() {
     const dialogRef = this.dialog.open(ChangePasswordComponent, {
-      width: '500px',
-      data: {
-        usuario: this.usuario
-      }
+      width: '500px'
     });
   }
 
@@ -54,7 +51,7 @@ export class BaseLayoutComponent implements OnInit {
 
   opcionPerfil() {
     let link = '../../../../usuarios/'
-    this.router.navigate([link + this.usuario.id], { relativeTo: this.route });
+    this.router.navigate([link + this.usuario.id]);
   }
 
 }

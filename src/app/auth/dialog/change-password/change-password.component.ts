@@ -15,14 +15,14 @@ export class ChangePasswordComponent implements OnInit {
   password: string;
   confirmPassword: string;
   passwordIguales: boolean;
-  minLength : number;
+  minLength: number;
   currentPasswordHidden: boolean;
   passwordHidden: boolean;
   confirmPasswordHidden: boolean;
-  usuario: Usuario = new Usuario();
-  constructor(public dialogRef: MatDialogRef<ChangePasswordComponent>, private authService:UsuarioService,
-    private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: {usuario: Usuario}) { }
+  id: number;
+  correo: string;
+  constructor(public dialogRef: MatDialogRef<ChangePasswordComponent>, private authService: UsuarioService,
+    private snackBar: MatSnackBar,) { }
 
   ngOnInit(): void {
 
@@ -31,18 +31,17 @@ export class ChangePasswordComponent implements OnInit {
     this.currentPasswordHidden = true;
     this.passwordHidden = true;
     this.confirmPasswordHidden = true;
-    if (this.data){
-      this.usuario = this.data.usuario
-    }
+    this.id = this.authService.authenticatedUserValue.id;
+    this.correo = this.authService.authenticatedUserValue.correo;
   }
 
-  onConfirmar(): void { 
-    this.authService.edit(this.usuario).subscribe(
-      () =>{
-        this.snackBar.open("Se cambio correctamente", '', {duration: 2000});
+  onConfirmar(): void {
+    this.authService.updatePassword(this.id, this.correo, this.currentPassword, this.password).subscribe(
+      () => {
+        this.snackBar.open("Se cambio correctamente", '', { duration: 2000 });
         this.onSalir();
       },
-      err => this.snackBar.open(err, '', {duration: 2000})
+      err => this.snackBar.open(err, '', { duration: 2000 })
     );
   }
 
@@ -51,7 +50,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   verificarPasswordIguales(): void {
-    if (this.password.length >  0|| this.confirmPassword.length > 0) {
+    if (this.password.length > 0 || this.confirmPassword.length > 0) {
       if (this.password != this.confirmPassword) {
         this.passwordIguales = false;
       } else {
