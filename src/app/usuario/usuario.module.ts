@@ -18,6 +18,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { SearchUsuarioComponent } from './components/search-usuario/search-usuario.component';
 import {MatSelectModule} from '@angular/material/select';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [AdmUsuariosComponent, SaveUsuarioComponent, SearchUsuarioComponent],
@@ -36,7 +38,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatMenuModule,
     DragDropModule,
+    MatProgressSpinnerModule,
   ],
   entryComponents: [ SearchUsuarioComponent],
 })

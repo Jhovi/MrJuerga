@@ -67,9 +67,7 @@ export class TopProductosVendidosComponent implements OnInit {
           { data: this.cantidadArray }
         ];
 
-        console.log(this.valorMax)
-        
-        console.log(this.valorMin)
+  
         this.setChartOptions()
         this.chartLabels = this.labels;
         this.chartReady = true;

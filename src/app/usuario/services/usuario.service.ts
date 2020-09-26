@@ -81,4 +81,9 @@ export class UsuarioService {
     const url = this.apiUrl + "/updatepsw";
     return this.http.put<void>(url, { 'id': id, 'correo': correo, 'password': password, 'newpassword': newPassword });
   }
+
+  generatePDF() {
+    const url = this.apiUrl + "/getpdf";
+    return this.http.get<any>(url, httpOptions);
+  }
 }

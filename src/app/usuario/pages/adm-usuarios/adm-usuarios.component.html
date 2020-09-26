@@ -1,14 +1,25 @@
 <mat-toolbar class="option-toolbar">
     <mat-toolbar-row class="path-mat-toolbar-row">
-      <h3 class="path-h3">Administracion de Usuarios</h3>
+        <h3 class="path-h3">Administracion de Usuarios</h3>
     </mat-toolbar-row>
     <mat-toolbar-row class="actions-mat-toolbar-row">
-      <div class="actions-button-row">
-        <a (click)="saveUsuarioView()" mat-stroked-button color="primary">Registrar Usuario</a>
-        <button mat-stroked-button  class="btn-generar-excel" color="primary" (click)="generateExcel()" > Exportar Excel</button>
-      </div>
+        <div class="actions-button-row">
+            <a (click)="saveUsuarioView()" mat-stroked-button color="primary">Registrar Usuario</a>
+
+            <button class="menu-button" mat-stroked-button [matMenuTriggerFor]="exportMenu"
+                color="primary">Exportar</button>
+            <mat-menu #exportMenu="matMenu">
+                <button mat-menu-item color="primary" (click)="generateExcel()"> Exportar
+                    Excel</button>
+                <button mat-menu-item color="primary" (click)="generatePDF()"> Exportar
+                    PDF</button>
+
+            </mat-menu>
+
+        </div>
+        <mat-spinner class="spinner" *ngIf="mostrarProgreso" diameter="70"></mat-spinner>
     </mat-toolbar-row>
-  </mat-toolbar>
+</mat-toolbar>
 
 <mat-card class="lista-usuarios-card">
     <mat-card class="card-usuarios">

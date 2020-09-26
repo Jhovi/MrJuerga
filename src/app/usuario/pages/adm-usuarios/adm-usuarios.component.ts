@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AdmUsuariosComponent implements OnInit {
 
+  mostrarProgreso: boolean = false;
   fechaActual = new Date();
   anioActual: number = this.fechaActual.getFullYear();
   usuarios: Usuario[];
@@ -44,7 +45,6 @@ export class AdmUsuariosComponent implements OnInit {
   }
 
   eliminar(usuario: Usuario) {
-    console.log(usuario);
     this.usuarioService.delete(usuario).subscribe(() => {
       this._snackBar.open('Eliminacion con éxito', '', { duration: 2000 });
       this.getUsuarios();
@@ -60,10 +60,28 @@ export class AdmUsuariosComponent implements OnInit {
   }
 
   generateExcel() {
+    this.mostrarProgreso = true;
     this.usuarioService.generateExcel().subscribe((response) => {
-      const file = new Blob([response], { type: 'application/vnd.ms-excel' });
-      const fileURL = URL.createObjectURL(file);
-      window.open(fileURL);
+      if (response) {
+        this.mostrarProgreso = false;
+        const file = new Blob([response], { type: 'application/vnd.ms-excel' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      }
+    }, err => {
+      this._snackBar.open(err, '', { duration: 2000 });
+    })
+  }
+
+  generatePDF() {
+    this.mostrarProgreso = true;
+    this.usuarioService.generatePDF().subscribe((response) => {
+      if (response) {
+        this.mostrarProgreso = false;
+        const file = new Blob([response], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      }
     }, err => {
       this._snackBar.open(err, '', { duration: 2000 });
     })

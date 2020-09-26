@@ -37,6 +37,16 @@
   width: 97%;
 }
 
-.btn-generar-excel{
+.btn-generar-excel {
   margin-left: 0.5rem;
+}
+
+.menu-button {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.spinner {
+  margin-left: 20rem;
 }
