@@ -16,7 +16,7 @@ export class AdmUsuariosComponent implements OnInit {
   fechaActual = new Date();
   anioActual: number = this.fechaActual.getFullYear();
   usuarios: Usuario[];
-  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'correo', 'telefono', 'edad', 'dni', 'acciones'];
+  displayedColumns: string[] = ['id', 'nombre', 'correo', 'telefono', 'edad', 'dni', 'acciones'];
   dataSource: MatTableDataSource<Usuario>;
   constructor(private usuarioService: UsuarioService, private router: Router,
     private route: ActivatedRoute, private _snackBar: MatSnackBar) { }

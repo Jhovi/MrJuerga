@@ -20,6 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [AdmUsuariosComponent, SaveUsuarioComponent, SearchUsuarioComponent],
@@ -41,6 +42,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatMenuModule,
     DragDropModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
   ],
   entryComponents: [ SearchUsuarioComponent],
 })

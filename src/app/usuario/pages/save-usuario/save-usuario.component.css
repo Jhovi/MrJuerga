@@ -88,6 +88,19 @@
 
 }
 
+.example-list-avatar {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  margin: auto;
+}
+
 .example-box {
 
   border-radius: 50%;
@@ -137,12 +150,20 @@
 
 .genero-image{
   margin: auto;
-  height: 300px;
-  width: 300px;
+  height: 220px;
+  width: 220px;
 }
 
 .genero-image-view{
-  margin-left: 35%;
-  height: 300px;
-  width: 300px;
+  margin-left: 40%;
+  height: 200px;
+  width: 200px;
 }
+
+mat-card img{
+  margin-top: 0.5rem;
+  height: 200px;
+  width: 215px;
+  object-fit: contain;
+}
+

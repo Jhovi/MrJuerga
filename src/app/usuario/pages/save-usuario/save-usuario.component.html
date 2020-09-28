@@ -15,15 +15,17 @@
     <mat-card-content>
         <form id="saveForm" (ngSubmit)="saveUsuario(saveForm)" #saveForm="ngForm">
 
+
             <div *ngIf="role !='view'">
+                <h3>Seleccione su genero:</h3>
                 <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
                     cdkDropListSortingDisabled class="example-list" (cdkDropListDropped)="drop($event)">
-                    <div class="genero-image" *ngFor="let item of todo" cdkDrag> <img *ngIf="role !='view'" [src]="item"
-                            alt="your image" width="80%" /></div>
+                    <div class="genero-image" *ngFor="let item of todo" cdkDrag> <img mat-card-image
+                            *ngIf="role !='view'" [src]="item" alt="your image" width="80%" /></div>
                 </div>
-
+                <h3>Arrastre imagen dentro del recuadro</h3>
                 <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
-                    class="example-list" (cdkDropListDropped)="drop($event)">
+                    class="example-list-avatar" (cdkDropListDropped)="drop($event)">
                     <div class="genero-image" *ngFor="let item of done" cdkDrag> <img [src]="item" alt="your image"
                             width="80%" /></div>
                 </div>

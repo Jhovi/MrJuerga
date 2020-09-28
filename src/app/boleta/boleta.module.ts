@@ -19,6 +19,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {ReactiveFormsModule} from  '@angular/forms'
 import {MatSelectModule} from '@angular/material/select';
 import { AddDetalleComponent } from './components/add-detalle/add-detalle.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [AdmBoletaComponent, SaveBoletaComponent, AddDetalleComponent],
@@ -39,6 +40,7 @@ import { AddDetalleComponent } from './components/add-detalle/add-detalle.compon
     MatNativeDateModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatTooltipModule,
   ]
 })
 export class BoletaModule { }

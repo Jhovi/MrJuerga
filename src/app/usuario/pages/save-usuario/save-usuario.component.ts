@@ -29,21 +29,21 @@ export class SaveUsuarioComponent implements OnInit {
   imagenGeneroMap: Map<number, string> = new Map([
     [0, 'assets/images/avatar_hombre.jpg'],
     [1, 'assets/images/avatar_femenino.png'],
-    [2, 'assets/images/avatar_desconocido.png']
+    [2, 'assets/images/avatar_desconocido.jpg']
   ]);
 
 
   imagenToGeneroMap: Map<string, number> = new Map([
     ['assets/images/avatar_hombre.jpg', 0],
     ['assets/images/avatar_femenino.png', 1],
-    ['assets/images/avatar_desconocido.png', 2]
+    ['assets/images/avatar_desconocido.jpg', 2]
   ]);
 
 
   todo = [
     'assets/images/avatar_hombre.jpg',
     'assets/images/avatar_femenino.png',
-    'assets/images/avatar_desconocido.png'
+    'assets/images/avatar_desconocido.jpg'
   ];
 
   done = [

@@ -16,6 +16,7 @@ import { ProductsByCategoryComponent } from './pages/products-by-category/produc
 import {MatSelectModule} from '@angular/material/select';
 import { SaveProductoDialogComponent } from './components/save-producto-dialog/save-producto-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [AdmProductosComponent, ProductsByCategoryComponent, SaveProductoDialogComponent],
@@ -33,6 +34,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSelectModule,
     MatInputModule,
     MatDialogModule,
+    MatTooltipModule,
   ]
 })
 export class ProductosModule { }

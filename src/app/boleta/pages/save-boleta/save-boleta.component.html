@@ -62,7 +62,7 @@
 
                         <ng-container matColumnDef="precioProducto">
                             <th mat-header-cell *matHeaderCellDef> Precio </th>
-                            <td mat-cell *matCellDef="let detalle"> {{detalle.producto.precio}} </td>
+                            <td mat-cell *matCellDef="let detalle"> {{detalle.producto.precio | currency:'S/'}} </td>
                             <td mat-footer-cell *matFooterCellDef>  </td>
                         </ng-container>
 
@@ -84,9 +84,9 @@
                         </ng-container>
 
                         <ng-container matColumnDef="subtotal">
-                            <th mat-header-cell *matHeaderCellDef> Subtotal </th>
-                            <td mat-cell *matCellDef="let detalle"> {{detalle.subtotal}} </td>
-                            <td mat-footer-cell *matFooterCellDef> {{getTotalCost()}} </td>
+                            <th mat-header-cell style="text-align:center" *matHeaderCellDef> Subtotal </th>
+                            <td mat-cell style="text-align:center" *matCellDef="let detalle"> {{detalle.subtotal | currency:'S/'}} </td>
+                            <td mat-footer-cell style="text-align:center" *matFooterCellDef> {{getTotalCost() | currency:'S/'}} </td>
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
