@@ -13,9 +13,7 @@ import { Module, OpcionService } from '../../services/opcion.service';
   styleUrls: ['./base-layout.component.css']
 })
 export class BaseLayoutComponent implements OnInit {
-  modules: Module[] = [
 
-  ]
   routerLink = '/productos/category/';
   usuario: Usuario = new Usuario();
   constructor(private opcionService: OpcionService, private authService: UsuarioService,
@@ -23,12 +21,12 @@ export class BaseLayoutComponent implements OnInit {
     public dialog: MatDialog,) { }
 
   ngOnInit(): void {
-
-    let userId = this.authService.authenticatedUserValue.id
-    this.authService.findById(userId).subscribe(usuario => {
-      this.usuario = usuario
-    })
-    this.modules = this.opcionService.getOpciones();
+    if (this.authService.authenticatedUserValue) {
+      let userId = this.authService.authenticatedUserValue.id
+      this.authService.findById(userId).subscribe(usuario => {
+        this.usuario = usuario
+      })
+    }
   }
 
   openChangePassword() {

@@ -6,14 +6,26 @@
         <div class="actions-button-row">
             <a (click)="saveUsuarioView()" mat-stroked-button color="primary">Registrar Usuario</a>
 
-            <button class="menu-button" mat-stroked-button [matMenuTriggerFor]="exportMenu"
+            <button class="menu-button" id="btn-export" mat-stroked-button [matMenuTriggerFor]="exportMenu"
                 color="primary">Exportar</button>
             <mat-menu #exportMenu="matMenu">
-                <button mat-menu-item color="primary" (click)="generateExcel()"> Exportar
+                <button mat-menu-item color="primary" id="btn-export-excel" (click)="generateExcel()"> Exportar
                     Excel</button>
-                <button mat-menu-item color="primary" (click)="generatePDF()"> Exportar
+                <button mat-menu-item color="primary" id="btn-export-pdf" (click)="generatePDF()"> Exportar
                     PDF</button>
+            </mat-menu>
 
+            <button class="menu-button" id="btn-import" mat-stroked-button [matMenuTriggerFor]="importMenu"
+                color="primary">Importar</button>
+            <mat-menu #importMenu="matMenu">
+                <input type="file" style="display: none" (change)="onArchivoSelected($event)" #archivoInput>
+                <button mat-menu-item color="primary" (click)="archivoInput.click()">
+                    CSV
+                </button>
+                <input type="file" style="display: none" (change)="onExcelSelected($event)" #archivoInputExcel>
+                <button mat-menu-item color="primary" (click)="archivoInputExcel.click()">
+                    Excel
+                </button>
             </mat-menu>
 
         </div>
@@ -34,7 +46,8 @@
 
                 <ng-container matColumnDef="nombre">
                     <th mat-header-cell style="text-align:center" *matHeaderCellDef> Nombres y Apellidos </th>
-                    <td mat-cell  style="text-align:left" *matCellDef="let usuario"> {{usuario.nombre}} {{usuario.apellido}}</td>
+                    <td mat-cell style="text-align:left" *matCellDef="let usuario"> {{usuario.nombre}}
+                        {{usuario.apellido}}</td>
                 </ng-container>
 
 
@@ -59,8 +72,8 @@
                 </ng-container>
 
                 <ng-container matColumnDef="acciones">
-                    <th mat-header-cell  style="text-align:center"  *matHeaderCellDef> Acciones </th>
-                    <td mat-cell  style="text-align:center" *matCellDef="let element;let i=index">
+                    <th mat-header-cell style="text-align:center" *matHeaderCellDef> Acciones </th>
+                    <td mat-cell style="text-align:center" *matCellDef="let element;let i=index">
                         <button color="primary" mat-button matSuffix mat-icon-button>
                             <mat-icon matTooltip="Ver" (click)="onSelect(element)">visibility</mat-icon>
                         </button>

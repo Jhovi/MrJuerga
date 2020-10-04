@@ -6,9 +6,9 @@
 
 
             <div *ngIf="usuario.rol=='admin'">
-                <button class="menu-button" mat-button [matMenuTriggerFor]="usuarioMenu">Usuario</button>
+                <button class="menu-button" id="btn-menu-usuario" mat-button [matMenuTriggerFor]="usuarioMenu">Usuario</button>
                 <mat-menu #usuarioMenu="matMenu">
-                    <button mat-menu-item routerLink="/../../../usuarios/adm">Listar usuarios</button>
+                    <button mat-menu-item id="btn-list-usuario" routerLink="/../../../usuarios/adm">Listar usuarios</button>
                     <button mat-menu-item routerLink="/../../../usuarios/save">Registrar usuario</button>
 
                 </mat-menu>
@@ -47,7 +47,7 @@
             </mat-menu>
 
             <div *ngIf="usuario.rol=='admin'">
-                <button class="menu-button" mat-button routerLink="/../../../tableros/adm">Estadistica</button>
+                <button class="menu-button" id="btn-metrics" mat-button routerLink="/../../../tableros/adm">Estadistica</button>
             </div>
             <button class="options-btn" color="white" mat-icon-button [matMenuTriggerFor]="options">
                 <mat-icon matTooltip="Opciones">more_vert</mat-icon>

@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AdmUsuariosComponent implements OnInit {
 
+  fileToUpload: File = null;
   mostrarProgreso: boolean = false;
   fechaActual = new Date();
   anioActual: number = this.fechaActual.getFullYear();
@@ -86,4 +87,32 @@ export class AdmUsuariosComponent implements OnInit {
       this._snackBar.open(err, '', { duration: 2000 });
     })
   }
+
+
+  public onArchivoSelected(event: any) {
+    this.mostrarProgreso = true;
+    let file = event.target.files[0] as File;
+    this.usuarioService.saveFile(file).subscribe(() => {
+      this.usuarioService.importCsv(file.name).subscribe( () => {
+        this.mostrarProgreso = false;
+        this._snackBar.open('Usuarios registrados con éxito', '', { duration: 2000 });
+        this.getUsuarios();
+      })
+    })
+  }
+
+  public onExcelSelected(event:any){
+    this.mostrarProgreso = true;
+    let file = event.target.files[0] as File;
+    this.usuarioService.saveFile(file).subscribe(() => {
+      this.usuarioService.importExcel(file.name).subscribe( () => {
+        this.mostrarProgreso = false;
+        this._snackBar.open('Usuarios registrados con éxito', '', { duration: 2000 });
+        this.getUsuarios();
+      })
+    })
+  }
+
+
 }
+

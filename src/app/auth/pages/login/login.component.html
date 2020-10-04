@@ -4,25 +4,25 @@
             <mat-card-header>
 
             </mat-card-header>
-            <img mat-card-image class="logo-mat-card-image" src="assets/images/logo.jpeg" alt="Logo Empresa">
+            <img mat-card-image class="logo-mat-card-image" src="assets/images/logo.png" alt="Logo Empresa">
 
             <mat-card-content>
                 <mat-form-field class="full-width" appearance="standard">
                     <mat-label>Correo</mat-label>
-                    <input type="text" matInput placeholder="Usuario..." [(ngModel)]="correo" name="correo" required>
+                    <input type="text" matInput placeholder="Usuario..." id="name"[(ngModel)]="correo" name="correo" required>
                 </mat-form-field>
 
                 <mat-form-field class="full-width " appearance="standard">
                     <mat-label>Clave</mat-label>
-                    <input autocomplete="new-password" type="password" matInput placeholder="Clave"
+                    <input autocomplete="new-password" type="password" id="password" matInput placeholder="Clave"
                         [(ngModel)]="password" name="password" required>
                     <mat-hint>Min 6 caracteres</mat-hint>
                 </mat-form-field>
             </mat-card-content>
 
             <mat-card-actions align="center">
-                <button type="submit" mat-stroked-button color="primary">Ingresar</button>
-                <button type="button" routerLink="/../../usuarios/save" mat-stroked-button color="primary">Registrarse</button>
+                <button type="submit" id="btn-accept" mat-stroked-button color="primary">Ingresar</button>
+                <button type="button" id="btn-register" routerLink="/../../usuarios/save" mat-stroked-button color="primary">Registrarse</button>
                 <button type="button" (click)="invitadoUser()" mat-stroked-button color="primary">Invitado</button>
             </mat-card-actions>
         </mat-card>

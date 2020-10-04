@@ -20,9 +20,9 @@
                     <td mat-cell style="text-align:center" *matCellDef="let boleta"> {{boleta.id}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="nombreUsuario">
+                <ng-container matColumnDef="nombreUsuario" >
                     <th mat-header-cell style="text-align:center" *matHeaderCellDef> Nombre </th>
-                    <td mat-cell *matCellDef="let boleta"> {{boleta.usuario.nombre}} {{boleta.usuario.apellido}} </td>
+                    <td mat-cell *matCellDef="let boleta"> {{boleta.usuario?.nombre}} {{boleta.usuario?.apellido}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="fecha">

@@ -10,6 +10,10 @@ const httpOptions = {
   'responseType': 'arraybuffer' as 'json'
 };
 
+const httpOptions_2 = {
+  'responseType': 'text' as 'json' 
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -85,5 +89,22 @@ export class UsuarioService {
   generatePDF() {
     const url = this.apiUrl + "/getpdf";
     return this.http.get<any>(url, httpOptions);
+  }
+
+  importCsv(name: string) {
+    const url = this.apiUrl + "/LoadUsers/" + name;
+    return this.http.post<any>(url, name);
+  }
+
+  importExcel(name: string) {
+    const url = this.apiUrl + "/loadUsersExcel/" + name;
+    return this.http.post<any>(url, name);
+  }
+
+  saveFile(file: File) {
+    const url = environment.apiUrl + "FileUpload";
+    const formData: FormData = new FormData();
+    formData.append('files', file, file.name);
+    return this.http.post<any>(url, formData,httpOptions_2);
   }
 }
