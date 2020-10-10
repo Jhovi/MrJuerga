@@ -20,6 +20,7 @@ import {ReactiveFormsModule} from  '@angular/forms'
 import {MatSelectModule} from '@angular/material/select';
 import { AddDetalleComponent } from './components/add-detalle/add-detalle.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [AdmBoletaComponent, SaveBoletaComponent, AddDetalleComponent],
@@ -41,6 +42,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ReactiveFormsModule,
     MatSelectModule,
     MatTooltipModule,
+    MatDividerModule,
   ]
 })
 export class BoletaModule { }

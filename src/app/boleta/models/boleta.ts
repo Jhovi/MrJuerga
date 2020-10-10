@@ -1,6 +1,12 @@
 import { Usuario } from 'src/app/usuario/models/usuario';
 import { Producto } from 'src/app/productos/models/producto';
 
+export interface ConfiguracionAccion {
+    estadoOrigen: string,
+    accion: string,
+    estadoDestino: string
+  }
+
 export class Boleta {
     id: number;
     usuarioId: number;
@@ -8,9 +14,16 @@ export class Boleta {
     fecha: string;
     direccion: string;
     total: string;
+    estado: string;
     detalleBoleta: DetalleBoleta[];
 
+    public static readonly configuracionesAccion: ConfiguracionAccion[] = [
+        { accion: 'Aprobar', estadoOrigen: 'Registrado', estadoDestino: 'Anulado' },
+        { accion: 'Anular', estadoOrigen: 'Registrado', estadoDestino: 'Anulado' },
+    ];
 }
+
+
 
 
 export class DetalleBoleta {

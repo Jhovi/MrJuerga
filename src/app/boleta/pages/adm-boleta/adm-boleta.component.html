@@ -13,6 +13,17 @@
     <mat-card class="card-productos">
         <mat-card-title>Lista de Boletas</mat-card-title>
         <mat-card-content>
+
+            <div class="busqueda-container">
+            <mat-form-field appearance="outline">
+                <mat-label>Buscar por estado</mat-label>
+                <mat-select [(ngModel)]="opcionSeleccionada" (selectionChange)="findByEstado($event.value)" name="opcion">
+                  <mat-option *ngFor="let opcion of opciones" [value]="opcion.value">
+                    {{opcion.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
             <table mat-table [dataSource]="dataSource" class="table-productos">
 
                 <ng-container matColumnDef="id">
@@ -33,6 +44,12 @@
                 <ng-container matColumnDef="direccion">
                     <th mat-header-cell style="text-align:center" *matHeaderCellDef> Direccion </th>
                     <td mat-cell *matCellDef="let boleta"> {{boleta.direccion}} </td>
+                </ng-container>
+
+                
+                <ng-container matColumnDef="estado">
+                    <th mat-header-cell style="text-align:center" *matHeaderCellDef> Estado </th>
+                    <td mat-cell style="text-align:center" *matCellDef="let boleta"> {{boleta.estado}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="total">

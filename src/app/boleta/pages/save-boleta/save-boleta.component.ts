@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Boleta, DetalleBoleta } from '../../models/boleta';
+import { Boleta, ConfiguracionAccion, DetalleBoleta } from '../../models/boleta';
 import { ProductoService } from 'src/app/productos/services/producto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -36,12 +36,22 @@ export class SaveBoletaComponent implements OnInit {
   displayedColumns: string[] = ['codProducto', 'nombreProducto', 'precioProducto', 'cantidad', 'subtotal'];
   dataSource = new MatTableDataSource<DetalleBoleta>();
 
+  loggedUser: Usuario = new Usuario();
+  acciones: ConfiguracionAccion[] = Boleta.configuracionesAccion;
+
   data: DetalleBoleta[] = new Array();
   constructor(private productoService: ProductoService, private boletaService: BoletaService,
     private usuarioService: UsuarioService, private _snackBar: MatSnackBar, private route: ActivatedRoute,
     private router: Router, public dialog: MatDialog,) { }
 
   ngOnInit(): void {
+
+    if (this.usuarioService.authenticatedUserValue) {
+      let userId = this.usuarioService.authenticatedUserValue.id
+      this.usuarioService.findById(userId).subscribe(usuario => {
+        this.loggedUser = usuario
+      })
+    }
 
     this.route.data.subscribe(e => { this.role = e.role })
 
@@ -178,5 +188,16 @@ export class SaveBoletaComponent implements OnInit {
 
   getTotalCost() {
     return this.dataSource.data.map(t => t.subtotal).reduce((acc, value) => acc + value, 0);
+  }
+
+  getAcciones(estadoOrigen: string): ConfiguracionAccion[] {
+    return this.acciones.filter(e => e.estadoOrigen === estadoOrigen);
+  }
+
+  onRequestAccion(accion: string, estadoDestino: string) {
+    this.boleta.estado = estadoDestino
+    this.boletaService.edit(this.boleta).subscribe(() => {
+      this._snackBar.open('Se modifico estado de la boleta', '', { duration: 2000 });
+    })
   }
 }

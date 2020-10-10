@@ -32,4 +32,8 @@ export class BoletaService {
     return this.http.get<Boleta>(url)
   }
 
+  findByEstado(estado: string): Observable<Boleta[]>{
+    const url = this.apiUrl + "/FetchByStatus?=" + estado;
+    return this.http.get<Boleta[]>(url);
+  }
 }

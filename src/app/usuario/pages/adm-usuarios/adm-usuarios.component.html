@@ -18,12 +18,12 @@
             <button class="menu-button" id="btn-import" mat-stroked-button [matMenuTriggerFor]="importMenu"
                 color="primary">Importar</button>
             <mat-menu #importMenu="matMenu">
-                <input type="file" style="display: none" (change)="onArchivoSelected($event)" #archivoInput>
-                <button mat-menu-item color="primary" (click)="archivoInput.click()">
+                <input type="file" id="upload-csv" style="display: none" (change)="onArchivoSelected($event)" #archivoInput>
+                <button mat-menu-item color="primary" id="btn-import-csv" (click)="archivoInput.click()">
                     CSV
                 </button>
-                <input type="file" style="display: none" (change)="onExcelSelected($event)" #archivoInputExcel>
-                <button mat-menu-item color="primary" (click)="archivoInputExcel.click()">
+                <input type="file" id="upload" style="display: none" (change)="onExcelSelected($event)" #archivoInputExcel>
+                <button mat-menu-item color="primary" id="btn-import-excel" (click)="archivoInputExcel.click()">
                     Excel
                 </button>
             </mat-menu>
