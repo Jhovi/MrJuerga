@@ -4,7 +4,7 @@
     </mat-toolbar-row>
     <mat-toolbar-row class="actions-mat-toolbar-row">
         <div class="actions-button-row">
-            <a (click)="saveBoletaView()" mat-stroked-button color="primary">Registrar Boleta</a>
+            <a id= "btn-registrar-boleta" (click)="saveBoletaView()" mat-stroked-button color="primary">Registrar Boleta</a>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>
@@ -24,7 +24,7 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <table mat-table [dataSource]="dataSource" class="table-productos">
+            <table id = "tb-boletas" mat-table [dataSource]="dataSource" class="table-productos">
 
                 <ng-container matColumnDef="id">
                     <th mat-header-cell style="text-align:center" *matHeaderCellDef> Codigo de Boleta </th>

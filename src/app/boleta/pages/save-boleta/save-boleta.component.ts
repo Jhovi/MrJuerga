@@ -28,7 +28,7 @@ export class SaveBoletaComponent implements OnInit {
   opcionSeleccionada = '';
   salirLink = '';
   role = '';
-  cantidad = 1;
+  cantidad = 0;
   producto: Producto;
   boleta = new Boleta();
   usuario: Usuario = new Usuario();

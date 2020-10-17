@@ -23,10 +23,10 @@
             </mat-menu>
 
             <div *ngIf="usuario.rol!='invitado'">
-                <button class="menu-button" mat-button [matMenuTriggerFor]="boletaMenu">Boleta</button>
+                <button class="menu-button" id="btn-menu-boleta" mat-button [matMenuTriggerFor]="boletaMenu">Boleta</button>
                 <mat-menu #boletaMenu="matMenu">
-                    <button mat-menu-item routerLink="/../../../boletas/adm">Listar boletas</button>
-                    <button mat-menu-item routerLink="/../../../boletas/save">Registrar boleta</button>
+                    <button mat-menu-item id = "btn-list-boleta" routerLink="/../../../boletas/adm">Listar boletas</button>
+                    <button mat-menu-item id = "btn-reg-boleta" routerLink="/../../../boletas/save">Registrar boleta</button>
                 </mat-menu>
             </div>
 
