@@ -81,7 +81,10 @@ export class AdmUsuariosComponent implements OnInit {
         this.mostrarProgreso = false;
         const file = new Blob([response], { type: 'application/pdf' });
         const fileURL = URL.createObjectURL(file);
-        window.open(fileURL);
+        var link = document.createElement('a');
+        link.href = fileURL;
+        link.download = "usuarios.pdf";
+        link.click();
       }
     }, err => {
       this._snackBar.open(err, '', { duration: 2000 });

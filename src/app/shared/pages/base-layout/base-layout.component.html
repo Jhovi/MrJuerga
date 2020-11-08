@@ -14,10 +14,10 @@
                 </mat-menu>
 
             </div>
-            <button class="menu-button" mat-button [matMenuTriggerFor]="productoMenu">Productos</button>
+            <button class="menu-button" id="btn-menu-producto" mat-button [matMenuTriggerFor]="productoMenu">Productos</button>
             <mat-menu #productoMenu="matMenu">
                 <div *ngIf="usuario.rol=='admin'">
-                    <button mat-menu-item routerLink="/../../../productos/adm">Listar productos</button>
+                    <button mat-menu-item id="btn-list-producto" routerLink="/../../../productos/adm">Listar productos</button>
                 </div>
                 <button mat-menu-item [matMenuTriggerFor]="categorias">Categorias</button>
             </mat-menu>
