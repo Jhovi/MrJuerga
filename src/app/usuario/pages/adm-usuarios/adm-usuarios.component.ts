@@ -97,6 +97,10 @@ export class AdmUsuariosComponent implements OnInit {
         this.mostrarProgreso = false;
         this._snackBar.open('Usuarios registrados con éxito', '', { duration: 2000 });
         this.getUsuarios();
+      }, err => {
+        this.mostrarProgreso = false;
+        this._snackBar.open('Problemas al leer el archivo', '', { duration: 2000 });
+
       })
     })
   }
@@ -109,6 +113,10 @@ export class AdmUsuariosComponent implements OnInit {
         this.mostrarProgreso = false;
         this._snackBar.open('Usuarios registrados con éxito', '', { duration: 2000 });
         this.getUsuarios();
+      }, err => {
+        this.mostrarProgreso = false;
+        this._snackBar.open('Problemas al leer el archivo', '', { duration: 2000 });
+
       })
     })
   }

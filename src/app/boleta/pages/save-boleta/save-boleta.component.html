@@ -5,7 +5,7 @@
     <mat-toolbar-row class="actions-mat-toolbar-row">
         <button id = "btn-guardar" mat-stroked-button color="primary" [disabled]="!saveForm.form.valid" form="saveForm"
             *ngIf="role!=='view'"> Guardar</button>
-        <button mat-stroked-button color="primary" *ngIf="role==='view'" routerLink='update'> Editar</button>
+        <button id="btn-edit" mat-stroked-button color="primary"  *ngIf="role==='view'" routerLink='update'> Editar</button>
         <button mat-stroked-button color="warn" class="btn-salir" [routerLink]="salirLink"> Atras</button>
     </mat-toolbar-row>
 </mat-toolbar>
