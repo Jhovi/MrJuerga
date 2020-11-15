@@ -1,0 +1,76 @@
+.card-adm-tablero {
+    max-width: 1300px;
+    margin: auto;
+    padding: 0;
+    height: 500px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .card-adm-tablero {
+      width: 100%;
+      height: 1200px;
+    }
+
+    .card-adm-tablero {
+      max-width: 1300px;
+      margin: auto;
+      padding: 0;
+      height: 1600px;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .card-adm-tablero {
+      width: 100%;
+      height: 1200px;
+    }
+
+    .card-adm-tablero {
+      max-width: 1300px;
+      margin: auto;
+      padding: 0;
+      height: 1500px;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .card-adm-tablero {
+      width: 100%;
+      height: 1200px;
+    }
+
+    .card-adm-tablero {
+      max-width: 1300px;
+      margin: auto;
+      padding: 0;
+      height: 1100px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .card-adm-tablero {
+      width: 100%;
+      height: 1200px;
+    }
+
+    .card-adm-tablero {
+      max-width: 1300px;
+      margin: auto;
+      padding: 0;
+      height: 900px;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    .card-adm-tablero {
+      width: 100%;
+      height: 1200px;
+    }
+
+    .card-adm-tablero {
+      max-width: 1300px;
+      margin: auto;
+      padding: 0;
+      height: 700px;
+    }
+  }

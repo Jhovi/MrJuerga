@@ -28,3 +28,12 @@
     background: #777;
   }
   
+  @media only screen and (max-height: 800px) {
+    .card-container{
+        padding: 0%;
+        overflow-y: scroll;
+        max-height: 500px;
+    }
+
+  
+  }

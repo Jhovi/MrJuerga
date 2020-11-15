@@ -21,18 +21,18 @@
     color: rgba(0, 0, 0, 0.74);
   }
   
-  .lista-productos-card {
+  .lista-boletas-card {
     max-width: 1300px;
     margin: auto;
     padding: 0;
   }
   
-  .table-productos {
+  .table-boletas {
     width: 100%;
     min-width: 1000px;
   }
   
-  .card-productos {
+  .card-boletas {
     margin-top: 1rem;
     width: 97%;
   }
@@ -40,4 +40,21 @@
   .busqueda-container{
     margin: auto;
     width: 20%;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .card-boletas {
+      overflow-x: scroll;
+      width: 90%;
+    }
+  
+    .busqueda-container{
+      margin: auto;
+      width: 80%;
+    }
+
+    .search-field{
+      width: 90%;
+    }
+   
   }

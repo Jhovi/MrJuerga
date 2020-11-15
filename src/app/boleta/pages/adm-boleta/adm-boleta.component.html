@@ -4,41 +4,44 @@
     </mat-toolbar-row>
     <mat-toolbar-row class="actions-mat-toolbar-row">
         <div class="actions-button-row">
-            <a id= "btn-registrar-boleta" (click)="saveBoletaView()" mat-stroked-button color="primary">Registrar Boleta</a>
+            <a id="btn-registrar-boleta" (click)="saveBoletaView()" mat-stroked-button color="primary">Registrar
+                Boleta</a>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-card class="lista-productos-card">
-    <mat-card class="card-productos">
-        <mat-card-title>Lista de Boletas</mat-card-title>
+<mat-card class="lista-boletas-card">
+    <mat-card-title style="padding: 1rem;">Lista de Boletas</mat-card-title>
+    <div class="busqueda-container">
+        <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Buscar por estado</mat-label>
+            <mat-select [(ngModel)]="opcionSeleccionada" (selectionChange)="findByEstado($event.value)" name="opcion">
+                <mat-option *ngFor="let opcion of opciones" [value]="opcion.value">
+                    {{opcion.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <mat-card class="card-boletas">
         <mat-card-content>
 
-            <div class="busqueda-container">
-            <mat-form-field appearance="outline">
-                <mat-label>Buscar por estado</mat-label>
-                <mat-select [(ngModel)]="opcionSeleccionada" (selectionChange)="findByEstado($event.value)" name="opcion">
-                  <mat-option *ngFor="let opcion of opciones" [value]="opcion.value">
-                    {{opcion.viewValue}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <table id = "tb-boletas" mat-table [dataSource]="dataSource" class="table-productos">
+
+            <table id="tb-boletas" mat-table [dataSource]="dataSource" class="table-boletas">
 
                 <ng-container matColumnDef="id">
                     <th mat-header-cell style="text-align:center" *matHeaderCellDef> Codigo de Boleta </th>
                     <td mat-cell style="text-align:center" *matCellDef="let boleta"> {{boleta.id}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="nombreUsuario" >
+                <ng-container matColumnDef="nombreUsuario">
                     <th mat-header-cell style="text-align:center" *matHeaderCellDef> Nombre </th>
                     <td mat-cell *matCellDef="let boleta"> {{boleta.usuario?.nombre}} {{boleta.usuario?.apellido}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="fecha">
                     <th mat-header-cell style="text-align:center" *matHeaderCellDef> Fecha </th>
-                    <td mat-cell style="text-align:center" *matCellDef="let boleta"> {{boleta.fecha  | date: 'dd/MM/yy'}} </td>
+                    <td mat-cell style="text-align:center" *matCellDef="let boleta">
+                        {{boleta.fecha  | date: 'dd/MM/yy'}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="direccion">
@@ -46,7 +49,7 @@
                     <td mat-cell *matCellDef="let boleta"> {{boleta.direccion}} </td>
                 </ng-container>
 
-                
+
                 <ng-container matColumnDef="estado">
                     <th mat-header-cell style="text-align:center" *matHeaderCellDef> Estado </th>
                     <td mat-cell style="text-align:center" *matCellDef="let boleta"> {{boleta.estado}} </td>
@@ -54,7 +57,8 @@
 
                 <ng-container matColumnDef="total">
                     <th mat-header-cell style="text-align:center" *matHeaderCellDef> Total </th>
-                    <td mat-cell style="text-align:center" *matCellDef="let boleta"> {{boleta.total | currency:'S/'}} </td>
+                    <td mat-cell style="text-align:center" *matCellDef="let boleta"> {{boleta.total | currency:'S/'}}
+                    </td>
                 </ng-container>
 
                 <ng-container matColumnDef="acciones">

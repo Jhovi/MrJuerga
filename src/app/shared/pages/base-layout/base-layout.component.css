@@ -54,5 +54,20 @@
 }
 
 .options-btn {
+  margin-right: 1rem;
   margin-left: auto;
+}
+
+.short-menu {
+  display: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .short-menu {
+    display: inline-block;
+  }
+
+  .div-button-container {
+    display: none;
+  }
 }

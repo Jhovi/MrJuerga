@@ -1,37 +1,95 @@
 <div class="example-container">
     <mat-toolbar color="primary">
         <mat-toolbar-row>
-            <h1 class="example-app-name">Mi Bodega  </h1>
+            <h1 class="example-app-name">Mi Bodega </h1>
             <span class="espaciar"></span>
 
 
-            <div *ngIf="usuario.rol=='admin'">
-                <button class="menu-button" id="btn-menu-usuario" mat-button [matMenuTriggerFor]="usuarioMenu">Usuario</button>
+            <div class="short-menu">
+
+                <button class="menu-button" id="btn-menu-usuario" mat-button [matMenuTriggerFor]="menuGeneral">
+                    <mat-icon aria-hidden="false" >menu</mat-icon>
+                </button>
+                <mat-menu #menuGeneral="matMenu" xPosition="before">
+                    <button id="btn-menu-usuario" mat-menu-item [matMenuTriggerFor]="usuarioMenu">Usuario</button>
+                    <button id="btn-menu-producto" mat-menu-item [matMenuTriggerFor]="productoMenu">Productos</button>
+                    <button id="btn-menu-boleta" mat-menu-item [matMenuTriggerFor]="boletaMenu">Boleta</button>
+                    <button id="btn-metrics" mat-menu-item routerLink="/../../../tableros/adm">Estadistica</button>
+                    <button (click)="logout()" mat-menu-item>Comprar Productos</button>
+                </mat-menu>
+
                 <mat-menu #usuarioMenu="matMenu">
-                    <button mat-menu-item id="btn-list-usuario" routerLink="/../../../usuarios/adm">Listar usuarios</button>
+                    <button mat-menu-item id="btn-list-usuario" routerLink="/../../../usuarios/adm">Listar
+                        usuarios</button>
+                    <button mat-menu-item routerLink="/../../../usuarios/save">Registrar usuario</button>
+
+                </mat-menu>
+
+
+                <mat-menu #productoMenu="matMenu">
+                    <div *ngIf="usuario.rol=='admin'">
+                        <button mat-menu-item id="btn-list-producto" routerLink="/../../../productos/adm">Listar
+                            productos</button>
+                    </div>
+                    <button mat-menu-item [matMenuTriggerFor]="categorias">Categorias</button>
+                </mat-menu>
+
+
+                <mat-menu #boletaMenu="matMenu">
+                    <button mat-menu-item id="btn-list-boleta" routerLink="/../../../boletas/adm">Listar
+                        boletas</button>
+                    <button mat-menu-item id="btn-reg-boleta" routerLink="/../../../boletas/save">Registrar
+                        boleta</button>
+                </mat-menu>
+
+
+                <mat-menu #categorias="matMenu">
+                    <button mat-menu-item (click)="redirectCategory('whisky')">Wiskhy</button>
+                    <button mat-menu-item (click)="redirectCategory('ron')">Ron</button>
+                    <button mat-menu-item (click)="redirectCategory('cerveza')">Cerveza</button>
+                    <button mat-menu-item (click)="redirectCategory('vino')">Vino</button>
+                    <button mat-menu-item (click)="redirectCategory('vodka')">Vodka</button>
+                    <button mat-menu-item (click)="redirectCategory('tequila')">Tequila</button>
+                    <button mat-menu-item (click)="redirectCategory('piqueos')">Piqueos</button>
+                    <button mat-menu-item (click)="redirectCategory('otros')">Otros</button>
+                </mat-menu>
+
+
+            </div>
+            <div *ngIf="usuario.rol=='admin'" class="div-button-container">
+                <button class="menu-button" id="btn-menu-usuario" mat-button
+                    [matMenuTriggerFor]="usuarioMenu">Usuario</button>
+                <mat-menu #usuarioMenu="matMenu">
+                    <button mat-menu-item id="btn-list-usuario" routerLink="/../../../usuarios/adm">Listar
+                        usuarios</button>
                     <button mat-menu-item routerLink="/../../../usuarios/save">Registrar usuario</button>
 
                 </mat-menu>
 
             </div>
-            <button class="menu-button" id="btn-menu-producto" mat-button [matMenuTriggerFor]="productoMenu">Productos</button>
+            <button class="menu-button div-button-container" id="btn-menu-producto" mat-button
+                [matMenuTriggerFor]="productoMenu">Productos</button>
             <mat-menu #productoMenu="matMenu">
                 <div *ngIf="usuario.rol=='admin'">
-                    <button mat-menu-item id="btn-list-producto" routerLink="/../../../productos/adm">Listar productos</button>
+                    <button mat-menu-item id="btn-list-producto" routerLink="/../../../productos/adm">Listar
+                        productos</button>
                 </div>
                 <button mat-menu-item [matMenuTriggerFor]="categorias">Categorias</button>
             </mat-menu>
 
-            <div *ngIf="usuario.rol!='invitado'">
-                <button class="menu-button" id="btn-menu-boleta" mat-button [matMenuTriggerFor]="boletaMenu">Boleta</button>
+            <div *ngIf="usuario.rol!='invitado'" class="div-button-container">
+                <button class="menu-button" id="btn-menu-boleta" mat-button
+                    [matMenuTriggerFor]="boletaMenu">Boleta</button>
                 <mat-menu #boletaMenu="matMenu">
-                    <button mat-menu-item id = "btn-list-boleta" routerLink="/../../../boletas/adm">Listar boletas</button>
-                    <button mat-menu-item id = "btn-reg-boleta" routerLink="/../../../boletas/save">Registrar boleta</button>
+                    <button mat-menu-item id="btn-list-boleta" routerLink="/../../../boletas/adm">Listar
+                        boletas</button>
+                    <button mat-menu-item id="btn-reg-boleta" routerLink="/../../../boletas/save">Registrar
+                        boleta</button>
                 </mat-menu>
             </div>
 
 
-            <div *ngIf="usuario.rol=='invitado'">
+            <div *ngIf="usuario.rol=='invitado'" class="div-button-container">
                 <button class="menu-button" (click)="logout()" mat-button>Comprar Productos</button>
             </div>
 
@@ -46,8 +104,9 @@
                 <button mat-menu-item (click)="redirectCategory('otros')">Otros</button>
             </mat-menu>
 
-            <div *ngIf="usuario.rol=='admin'">
-                <button class="menu-button" id="btn-metrics" mat-button routerLink="/../../../tableros/adm">Estadistica</button>
+            <div *ngIf="usuario.rol=='admin'" class="div-button-container">
+                <button class="menu-button" id="btn-metrics" mat-button
+                    routerLink="/../../../tableros/adm">Estadistica</button>
             </div>
             <button class="options-btn" color="white" mat-icon-button [matMenuTriggerFor]="options">
                 <mat-icon matTooltip="Opciones">more_vert</mat-icon>

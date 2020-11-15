@@ -26,3 +26,24 @@ mat-card img {
 .btn-ver{
   margin-left: 17rem;
 }
+
+
+@media only screen and (max-width: 400px) {
+
+  .lista-productos-card {
+    width: 95%;
+  }
+  
+  .card-producto {
+    width: 300px;
+    max-width: 90%;
+    height: 550px;
+    margin: 0 0 15px 0;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .btn-ver{
+    margin-left: 15rem;
+  }
+}
+
