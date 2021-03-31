@@ -37,7 +37,7 @@
 
                 <ng-container matColumnDef="categoria">
                     <th mat-header-cell style="text-align:center" *matHeaderCellDef> Categoria </th>
-                    <td mat-cell style="text-align:center" *matCellDef="let producto"> {{producto.categoria}} </td>
+                    <td mat-cell style="text-align:center" *matCellDef="let producto"> {{producto.categoria?.nombre}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="stock">

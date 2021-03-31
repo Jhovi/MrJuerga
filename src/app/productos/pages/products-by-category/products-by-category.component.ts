@@ -5,6 +5,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Producto } from '../../models/producto';
 import { MatDialog } from '@angular/material/dialog';
 import { SaveProductoDialogComponent } from '../../components/save-producto-dialog/save-producto-dialog.component';
+import { CategoriaService } from '../../services/categoria.service';
 
 @Component({
   selector: 'app-products-by-category',
@@ -13,22 +14,26 @@ import { SaveProductoDialogComponent } from '../../components/save-producto-dial
 })
 export class ProductsByCategoryComponent implements OnInit {
 
-  productos : Producto[] = new Array();
-  constructor(private productoService:ProductoService,public dialog: MatDialog, 
-    private _snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router,) { }
+  productos: Producto[] = new Array();
+  constructor(private productoService: ProductoService, public dialog: MatDialog,
+    private _snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router,
+    private categoriaService: CategoriaService) { }
 
   ngOnInit(): void {
     this.getProductoByCategoria();
   }
 
-  getProductoByCategoria(){
+  getProductoByCategoria() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let category = params.get('category');
       this.productoService.findByCategory(category).subscribe(productos => {
         this.productos = productos;
         this.productos.forEach(producto => {
           this.productoService.findImagen(producto.nombre).subscribe(imagen => {
-            producto.imagen = 'data:image/jpeg;base64,' + imagen;
+            this.categoriaService.findById(producto.categoriaId).subscribe(categoria => {
+              producto.categoria = categoria;
+              producto.imagen = 'data:image/jpeg;base64,' + imagen;
+            })
           })
         })
       })
@@ -36,21 +41,20 @@ export class ProductsByCategoryComponent implements OnInit {
 
   }
 
-  verProducto(id:number){
-    this.productoService.findById(id).subscribe(producto => {
-      const dialogRef = this.dialog.open(SaveProductoDialogComponent, {
-        width: '400px',
-        data: {
-          role: "view",
-          producto: { ...producto }
-        }
-      });
-  
-      dialogRef.afterClosed().subscribe(() => {
-     
-  
-      });
-    })
-    
+  verProducto(producto: Producto) {
+
+    const dialogRef = this.dialog.open(SaveProductoDialogComponent, {
+      width: '400px',
+      data: {
+        role: "view",
+        producto: { ...producto }
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+
+
+    });
+
   }
 }

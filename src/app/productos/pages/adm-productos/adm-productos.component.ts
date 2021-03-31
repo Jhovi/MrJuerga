@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { SaveProductoDialogComponent } from '../../components/save-producto-dialog/save-producto-dialog.component';
+import { CategoriaService } from '../../services/categoria.service';
 
 @Component({
   selector: 'app-adm-productos',
@@ -18,6 +19,7 @@ export class AdmProductosComponent implements OnInit {
   displayedColumns: string[] = ['codProducto', 'nombre', 'descripcion', 'precio', 'categoria', 'stock', 'acciones'];
   dataSource: MatTableDataSource<Producto>;
   constructor(private productoService: ProductoService, private router: Router,
+    private categoriaService: CategoriaService,
     public dialog: MatDialog, 
     private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
@@ -30,6 +32,11 @@ export class AdmProductosComponent implements OnInit {
     this.productoService.findAll().subscribe(productos => {
       this.productos = productos;
       this.productos = this.productos.filter(producto => producto.estado == 'activo')
+      this.productos.forEach(p => {
+        this.categoriaService.findById(p.categoriaId).subscribe(categoria => {
+          p.categoria = categoria;
+        })
+      })
       this.dataSource = new MatTableDataSource(this.productos)
     })
   }

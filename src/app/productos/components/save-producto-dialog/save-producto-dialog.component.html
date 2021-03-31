@@ -12,7 +12,7 @@
 
             <mat-form-field class="input-field-producto" appearance="outline">
                 <mat-label>Categoria</mat-label>
-                <mat-select [(ngModel)]="producto.categoria" name="categoria" [disabled]="role =='view'" required>
+                <mat-select [(ngModel)]="nombreCategoria" name="categoria" [disabled]="role =='view'" required>
                     <mat-option *ngFor="let categoria of selectCategoryList" [value]="categoria">
                         {{categoria}}
                     </mat-option>
