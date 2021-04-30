@@ -4,6 +4,7 @@ import { BaseChartDirective, Label, Color } from 'ng2-charts';
 import { Tablero } from '../../models/tablero';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-top-productos-vendidos',
@@ -44,8 +45,9 @@ export class TopProductosVendidosComponent implements OnInit {
 
   onChangeFechas(fechaDesde: Date, fechaHasta: Date) {
     this.valorMax = this.valorMin = 0;
-    let desde = fechaDesde.toLocaleDateString('en-US');
-    let hasta = fechaHasta.toLocaleDateString('en-US');
+    const datepipe: DatePipe = new DatePipe('en-US')
+    let desde = datepipe.transform(fechaDesde, 'dd/MM/yyyy');
+    let hasta = datepipe.transform(fechaHasta, 'dd/MM/yyyy');
     this.labels = [];
     this.cantidadArray = [];
     this.tableroService.getProductosMasVendidosEntreFechas(desde, hasta).subscribe(tableros => {
@@ -57,9 +59,9 @@ export class TopProductosVendidosComponent implements OnInit {
         })
 
         this.cantidadArray.forEach(cantidad => {
-          if (cantidad <= this.valorMax){
+          if (cantidad <= this.valorMax) {
             this.valorMin = cantidad;
-          }else {
+          } else {
             this.valorMax = cantidad;
           }
         })
@@ -67,7 +69,7 @@ export class TopProductosVendidosComponent implements OnInit {
           { data: this.cantidadArray }
         ];
 
-  
+
         this.setChartOptions()
         this.chartLabels = this.labels;
         this.chartReady = true;
@@ -78,7 +80,7 @@ export class TopProductosVendidosComponent implements OnInit {
   formatearFechas(e: any): string {
     var a: string = '';
     if (e instanceof Date) {
-       e = e.toLocaleDateString('en-US');
+      e = e.toLocaleDateString('en-US');
     }
     a = e;
     return a;
