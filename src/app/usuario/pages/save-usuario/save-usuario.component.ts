@@ -5,6 +5,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
+interface Genero {
+  value: number;
+  viewValue: string;
+}
+
+
 @Component({
   selector: 'app-save-usuario',
   templateUrl: './save-usuario.component.html',
@@ -25,6 +31,13 @@ export class SaveUsuarioComponent implements OnInit {
   confirmPasswordHidden: boolean;
 
   loggedUser: Usuario = new Usuario();
+
+  generos: Genero[] = [
+    { value: 0, viewValue: 'Masculino' },
+    { value: 1, viewValue: 'Femenino' },
+    { value: 2, viewValue: 'Incognito' },
+
+  ];
 
   imagenGeneroMap: Map<number, string> = new Map([
     [0, 'assets/images/avatar_hombre.jpg'],
@@ -90,7 +103,7 @@ export class SaveUsuarioComponent implements OnInit {
   saveUsuario({ value, valid }: { value: Usuario, valid: boolean }) {
     let link = '../';
     let url = '../';
-    this.usuario.genero = this.imagenToGeneroMap.get(this.done.toString())
+    //this.usuario.genero = this.imagenToGeneroMap.get(this.done.toString())
     if (valid) {
       if (this.usuario.id) {
         this.usuarioService.edit(this.usuario).subscribe(id => {

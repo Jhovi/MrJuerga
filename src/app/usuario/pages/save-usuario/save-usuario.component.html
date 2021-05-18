@@ -4,7 +4,7 @@
     </mat-toolbar-row>
     <mat-toolbar-row class="actions-mat-toolbar-row">
         <button mat-stroked-button color="primary" [disabled]="!(saveForm.form.valid && passwordIguales)"
-            form="saveForm" *ngIf="role!=='view'" id="btn-save" > Guardar</button>
+            form="saveForm" *ngIf="role!=='view'" id="btn-save"> Guardar</button>
         <button mat-stroked-button color="primary" *ngIf="role==='view'" routerLink='update'> Editar</button>
         <button mat-stroked-button color="warn" class="btn-salir" [routerLink]="salirLink"> Atras</button>
     </mat-toolbar-row>
@@ -15,8 +15,8 @@
     <mat-card-content>
         <form id="saveForm" (ngSubmit)="saveUsuario(saveForm)" #saveForm="ngForm">
 
-
-            <div *ngIf="role !='view'">
+            <!-- Write your comments here
+        <div *ngIf="role !='view'">
                 <h3>Seleccione su genero:</h3>
                 <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
                     cdkDropListSortingDisabled class="example-list" (cdkDropListDropped)="drop($event)">
@@ -29,10 +29,16 @@
                     <div class="genero-image" *ngFor="let item of done" cdkDrag> <img [src]="item" id="dragTo" alt="your image"
                             width="80%" /></div>
                 </div>
-            </div>
-            <img *ngIf="role =='view'" class="genero-image-view" [src]="done" alt="your image" width="80%" />
+            </div> 
+            <img *ngIf="role =='view'" class="genero-image-view" [src]="done" alt="your image" width="80%" /> -->
+           
+            <h3>Seleccione su genero:</h3>
+            <mat-radio-group [(ngModel)]="usuario.genero" name="genero" class="gender-select" aria-label="Select an option" [disabled]="role =='view'">
+                <mat-radio-button class="example-radio-button" *ngFor="let genero of generos" [value]="genero.value">
+                    {{genero.viewValue}}
+                  </mat-radio-button>
+            </mat-radio-group>
             <br>
-
             <mat-form-field class="input-field-usuario" appearance="outline">
                 <mat-label>Nombre</mat-label>
                 <input matInput type="text" [(ngModel)]="usuario.nombre" name="nombre" required
